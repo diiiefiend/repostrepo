@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<h1><a href="/">Discover<em>it</em></a></h1>
 <p align="right">
   <% if logged_in? %>
   Logged in as <%= current_user.email %> - <a href="<%= delete_session_url %>">Log out?</a>

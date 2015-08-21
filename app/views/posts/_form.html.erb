@@ -16,7 +16,8 @@
 <br>
   <% Sub.all.each do |sub| %>
     <input type="checkbox" name="post[sub_id][]" id="sub_id_<%= sub.id %>" value="<%= sub.id %>"
-      <%= "checked" if params[:sub_id].to_i == sub.id %>>
+      <%= "checked" if params[:sub_id].to_i == sub.id || @post.sub_ids.include?(sub.id) %>
+    >
     <label for="sub_id_<%= sub.id %>"><%= sub.title %></label>
     <br>
   <% end %>

@@ -1,0 +1,19 @@
+<h1>Post: <%= @comment.post.title %></h1>
+<h2>Comment:</h2>
+<p><%= @comment.content %></p>
+
+<% unless @comment.child_comments.empty? %>
+  <h3>Replies</h3>
+  <% @comment.child_comments.each do |reply| %>
+    <h5><%= reply.author.email %> @ <%= reply.created_at %>:</h5>
+    <p><%= reply.content %></p>
+  <% end %>
+<% end %>
+
+
+<h3>Add a Reply</h3>
+<form action="<%= comments_url %>" method="POST">
+  <input type="hidden" name="comment[parent_comment_id]" value="<%= params[:id] %>">
+  <input type="hidden" name="comment[post_id]" value="<%= @comment.post_id %>">
+  <%= render "new_comment" %>
+</form>

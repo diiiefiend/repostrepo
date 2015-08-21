@@ -1,8 +1,27 @@
 <h1><%= @post.title %></h1>
 
+<h4>posted in
+  <% @post.subs.each do |sub| %>
+  <a href="<%= sub_url(sub) %>"><%= sub.title %></a>,
+  <% end %>
+  by <%= @post.author.email %>
+</h4>
+
 <% if current_user == @post.author %>
   <h5><a href="<%= edit_post_url(@post) %>">edit</a></h5>
 <% end %>
 
 <p><a href="<%= @post.url %>"><%= @post.url %></a></p>
 <p><%= @post.content %></p>
+
+<% if !@post.comments.empty? %>
+<hr>
+<h3>Comments</h3>
+
+<hr>
+
+<h3>Add a Comment</h3>
+<form action="<%= comments_url %>" method="POST">
+  <input type="hidden" value="<%= params[:id] %>" name="comment[post_id]">
+  <%= render "comments/new_comment" %>
+</form>

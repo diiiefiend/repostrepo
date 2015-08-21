@@ -9,7 +9,11 @@ Rails.application.routes.draw do
 
   resources :subs
 
-  resources :posts, except: :index
+  resources :posts, except: :index do
+    resources :comments, only: :new, on: :member
+  end
+
+  resources :comments, only: [:create, :show]
 
   root to: redirect('/subs')
 end

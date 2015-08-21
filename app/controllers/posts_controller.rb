@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  before_action :ensure_sub, only: :create
+
+
   def new
     @post = Post.new
     render :new
@@ -10,7 +13,7 @@ class PostsController < ApplicationController
     pars_for_post.delete_if { |k, v| k == "sub_id" }
     @post = current_user.posts.new(pars_for_post)
     if @post.save
-      @post.sub_ids = post_params[:sub_id].map(&:to_i)
+      @post.sub_ids = sub_ids
       redirect_to post_url(@post)
     else
       render :new
@@ -51,5 +54,9 @@ class PostsController < ApplicationController
 
   def current_post
     Post.find(params[:id])
+  end
+
+  def ensure_sub
+    render :new if post_params[:sub_id].empty?
   end
 end
