@@ -1,0 +1,8 @@
+<h1> Log in! </h1>
+
+<form action=" <%= session_url %>" method="post">
+  <%= form_auth %>
+  <%= render "layouts/user_session_form" %>
+
+  <button>Log in!</button>
+</form>

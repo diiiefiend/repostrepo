@@ -1,0 +1,14 @@
+<h1><%= @sub.title %></h1>
+<p><%= @sub.description %></p>
+
+<ul>
+  <% @sub.posts.each do |post| %>
+    <li>
+      <a href="<%= post_url(post) %>"><%= post.title %></a>
+      <% if current_user == post.author %>
+         - <a href="<%= edit_post_url(post) %>">edit</a>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+<a href="<%= new_post_url %>?sub_id=<%= @sub.id %>">New Post</a>

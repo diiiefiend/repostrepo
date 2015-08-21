@@ -1,0 +1,18 @@
+<h1>Edit post</h1>
+
+<form action="<%= post_url(@post) %>" method="post">
+  <%= form_auth %>
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete post">
+</form>
+
+<hr><br>
+
+<form action="<%= post_url(@post) %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+
+  <%= render "form" %>
+
+  <input type="submit" value="Edit post">
+
+</form>

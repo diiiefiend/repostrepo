@@ -8,6 +8,14 @@
 </head>
 <body>
 
+<p align="right">
+  <% if logged_in? %>
+  Logged in as <%= current_user.email %> - <a href="<%= delete_session_url %>">Log out?</a>
+  <% else %>
+  <a href="<%= new_session_url %>">Log in</a> || <a href="<%= new_user_url %>">Sign Up</a>
+  <% end %>
+</p>
+
 <%= yield %>
 
 </body>

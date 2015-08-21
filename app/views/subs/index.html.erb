@@ -1,0 +1,15 @@
+<h1>All Subs</h1>
+
+<ul>
+<% @subs.each do |sub| %>
+  <li>
+    <a href=" <%= sub_url(sub.id) %>"><%= sub.title %></a>
+    - <%= sub.description %>
+    <% if current_user == sub.mod  %>
+      (<a href="<%= edit_sub_url(sub.id) %>">edit</a>)
+    <% end %>
+  </li>
+<% end %>
+</ul>
+
+<a href="<%= new_sub_url %>">Create a sub</a>

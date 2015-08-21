@@ -1,0 +1,16 @@
+<h1>Edit your sub</h1>
+
+<form action="<%= sub_url(@sub) %>" method="post">
+  <%= form_auth %>
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete sub"> (THIS IS IRREVERSIBLE)
+</form>
+<hr>
+<br>
+<form action=" <%= sub_url(@sub) %>" method="post">
+  <%= form_auth %>
+  <input type="hidden" name="_method" value="PATCH">
+
+  <%= render "form" %>
+
+</form>
