@@ -13,4 +13,14 @@ class Comment < ActiveRecord::Base
     dependent: :destroy
 
   belongs_to :post
+  has_many :votes, as: :votable, dependent: :destroy
+
+  def score
+    score = 0
+    self.votes.each do |vote|
+      score += vote.value
+    end
+
+    score
+  end
 end

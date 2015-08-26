@@ -13,6 +13,7 @@ class UsersController < ApplicationController
       log_in!(@user)
       render :show
     else
+      flash.now[:errors] = @user.errors.full_messages
       render :new
     end
   end

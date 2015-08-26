@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   before_action :ensure_sub, only: :create
 
-
   def new
     @post = Post.new
     render :new
@@ -16,12 +15,15 @@ class PostsController < ApplicationController
       @post.sub_ids = sub_ids
       redirect_to post_url(@post)
     else
+      flash.now[:errors] = @post.errors.full_messages
       render :new
     end
   end
 
   def show
     @post = current_post
+    @all_comments = @post.comments.includes(:author)
+    @comment_hash = @post.comments_by_parent_id
     render :show
   end
 
@@ -38,12 +40,29 @@ class PostsController < ApplicationController
 
   def update
     @post = current_post
+    sub_ids = post_params[:sub_id].map(&:to_i)
+    pars_for_post = post_params
+    pars_for_post.delete_if { |k, v| k == "sub_id" }
 
-    if @post.update(post_params)
+    if @post.update(pars_for_post)
+      @post.sub_ids = sub_ids
       redirect_to post_url(@post)
     else
+      flash.now[:errors] = @post.errors.full_messages
       render :edit
     end
+  end
+
+  def upvote
+    @post = current_post
+    Vote.create!(value: 1, votable_type: "Post", votable_id: @post.id)
+    redirect_to sub_url(@post.sub_ids.first)
+  end
+
+  def downvote
+    @post = current_post
+    Vote.create!(value: -1, votable_type: "Post", votable_id: @post.id)
+    redirect_to sub_url(@post.sub_ids.first)
   end
 
   private

@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
       params[:user][:password]
     )
     if @user.nil?
+      flash.now[:errors] = ["Invalid username/password combo"]
       render :new
     else
       log_in!(@user)

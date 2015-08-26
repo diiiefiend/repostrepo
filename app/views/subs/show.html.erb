@@ -4,10 +4,18 @@
 <ul>
   <% @sub.posts.each do |post| %>
     <li>
-      <a href="<%= post_url(post) %>"><%= post.title %></a>
+      <a href="<%= post_url(post) %>"><%= post.title %></a> (<%= post.score %>)
       <% if current_user == post.author %>
          - <a href="<%= edit_post_url(post) %>">edit</a>
       <% end %>
+       <form action="<%= upvote_post_url(post) %>" method="post">
+         <%= form_auth %>
+         <button>Upvote</button>
+       </form>
+       <form action="<%= downvote_post_url(post) %>" method="post">
+         <%= form_auth %>
+         <button>Downvote</button>
+       </form>
     </li>
   <% end %>
 </ul>

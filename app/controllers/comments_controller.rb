@@ -6,17 +6,27 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.new(comment_params)
-    if @comment.save
-      redirect_to post_url(@comment.post_id)
-    else
-      render :new
-    end
+    flash[:errors] = @comment.errors.full_messages unless @comment.save
+
+    redirect_to post_url(@comment.post_id)
   end
 
   def show
     @comment = current_comment
 
     render :show
+  end
+
+  def upvote
+    @comment = current_comment
+    Vote.create!(value: 1, votable_type: "Comment", votable_id: @comment.id)
+    redirect_to post_url(@comment.post)
+  end
+
+  def downvote
+    @comment = current_comment
+    Vote.create!(value: -1, votable_type: "Comment", votable_id: @comment.id)
+    redirect_to post_url(@comment.post)
   end
 
   private
