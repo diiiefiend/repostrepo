@@ -7,6 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+<div id = "container">
+<div id = "header">
 <h1><a href="/">Discover<em>it</em></a></h1>
 <p align="right">
   <% if logged_in? %>
@@ -15,7 +18,10 @@
   <a href="<%= new_session_url %>">Log in</a> || <a href="<%= new_user_url %>">Sign Up</a>
   <% end %>
 </p>
+<div class = "clear"></div>
+</div>
 
+<div id="content">
 <% if flash[:errors] %>
   <ul id="errors">
     <% flash[:errors].each do |error| %>
@@ -25,6 +31,7 @@
 <% end %>
 
 <%= yield %>
-
+</div>
+</div>
 </body>
 </html>

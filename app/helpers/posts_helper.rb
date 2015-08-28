@@ -8,7 +8,7 @@ module PostsHelper
      a += <<-HTML
       <li>
         <h5>#{comment.author.email} @ #{comment.created_at}: (#{comment.score})</h5>
-        <p>#{comment.content}</p>
+
         <form action="#{ upvote_comment_url(comment) }" method="post">
           #{form_auth}
           <button>Upvote</button>
@@ -17,7 +17,11 @@ module PostsHelper
           #{form_auth}
           <button>Downvote</button>
         </form>
-        <p align="right"><a href="#{comment_url(comment)}">reply</a></p>
+
+        <p>#{comment.content}</p>
+
+        <p class="reply_link"><a href="#{comment_url(comment)}">reply</a></p>
+        <div class="clear"></div>
       </li>
     HTML
     if has_children?(comment)

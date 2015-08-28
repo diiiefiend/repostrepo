@@ -13,3 +13,124 @@
  *= require_tree .
  *= require_self
  */
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background: #374552;
+  padding: 10px;
+  color: #2E2926;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+#container{
+  margin: 0 auto;
+  width: 80%;
+}
+
+#header{
+  background: #374552;
+  border-bottom: 5px solid #F9E1C5;
+  margin-bottom: 5px;
+  padding: 5px;
+  color: #8E8E90;
+}
+
+#header h1{
+  float: left;
+  margin-right: -20%;
+  margin-top: 20px;
+}
+#header h1 a{
+  font: 48px georgia, serif;
+  letter-spacing: .1em;
+  color: #F9E1C5;
+  margin-left: 20px;
+}
+#header h1 a em{
+  color: #D1D2CC;
+}
+#header h1 a:hover em{
+  color: #8E8E90;
+}
+#header p{
+  float: right;
+  font-size: 12px;
+}
+#header a{
+  color: #8E8E90;
+}
+#header a:hover{
+  color: #F9E1C5;
+}
+
+#content{
+  background: #D1D2CC;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.votable .reply_link{
+  float: right;
+}
+
+.votable p{
+  margin-bottom: 0;
+}
+
+.votable button{
+  float: left;
+  background: transparent;
+  border: 1px solid #ddd;
+  border-bottom: 1px solid white;
+  padding: 5px;
+}
+.votable button:hover{
+  background: white;
+}
+
+.votable li{
+  list-style: none;
+}
+
+.votable button, .votable p{
+  float: left;
+  margin: 5px;
+}
+
+.comments li{
+  border-left: 2px dashed #F9E1C5;
+  padding-left: 10px;
+}
+
+.clear{
+  clear: both;
+}
+
+a{
+  text-decoration: none;
+  color: #404A4C;
+  font-style: italic;
+}
+a:hover{
+  color: white;
+}
+
+ul, p, form{
+  margin: 10px 0;
+}
+
+ul{
+  margin-left: 15px;
+}
+
+li{
+  margin: 5px;
+  list-style: inside;
+}
+
+hr{
+  clear: both;
+}
