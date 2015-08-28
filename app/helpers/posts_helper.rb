@@ -9,14 +9,17 @@ module PostsHelper
       <li>
         <h5>#{comment.author.email} @ #{comment.created_at}: (#{comment.score})</h5>
 
+        <div class="vote_container">
         <form action="#{ upvote_comment_url(comment) }" method="post">
           #{form_auth}
-          <button>Upvote</button>
+          <button>^</button>
         </form>
         <form action="#{ downvote_comment_url(comment) }" method="post">
           #{form_auth}
-          <button>Downvote</button>
+          <button>v</button>
         </form>
+        <div class="clear"></div>
+        </div>
 
         <p>#{comment.content}</p>
 

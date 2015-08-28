@@ -4,14 +4,16 @@
 <ul class="votable">
   <% @sub.posts.each do |post| %>
     <li>
+      <div class="vote_container">
        <form action="<%= upvote_post_url(post) %>" method="post">
          <%= form_auth %>
-         <button>Upvote</button>
+         <button>^</button>
        </form>
        <form action="<%= downvote_post_url(post) %>" method="post">
          <%= form_auth %>
-         <button>Downvote</button>
+         <button>v</button>
        </form>
+     </div>
       <p><a href="<%= post_url(post) %>"><%= post.title %></a> (<%= post.score %>)
       <% if current_user == post.author %>
          - <a href="<%= edit_post_url(post) %>">edit</a>

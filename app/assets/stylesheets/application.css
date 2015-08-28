@@ -80,24 +80,40 @@ body{
   margin-bottom: 0;
 }
 
-.votable button{
+.votable li{
+  list-style: none;
+  margin-left: 20px;
+}
+
+.vote_container{
+  width: 25px;
+  margin-left: -40px;
+  display: block;
+  float: left;
+}
+
+.vote_container form{
+    float: right;
+    margin: 0;
+}
+
+.vote_container button{
   float: left;
   background: transparent;
-  border: 1px solid #ddd;
-  border-bottom: 1px solid white;
+  border: 0;
   padding: 5px;
+  font-size: 10px;
 }
-.votable button:hover{
+.vote_container button:hover{
   background: white;
 }
 
-.votable li{
-  list-style: none;
+.vote_container + p{
+  float: left;
 }
 
-.votable button, .votable p{
-  float: left;
-  margin: 5px;
+.comments ul{
+  margin-left: 20px;
 }
 
 .comments li{
@@ -116,6 +132,10 @@ a{
 }
 a:hover{
   color: white;
+}
+
+h2, h3, h4, h5{
+  margin: 5px 0 10px 0;
 }
 
 ul, p, form{
