@@ -14,7 +14,7 @@
          <button>v</button>
        </form>
      </div>
-      <p><a href="<%= post_url(post) %>"><%= post.title %></a> (<%= post.score %>) by <%= post.author %>
+      <p><a href="<%= post_url(post) %>"><%= post.title %></a> (<%= post.score %>) by <%= post.author.email %>
       <% if current_user == post.author %>
          - <a href="<%= edit_post_url(post) %>">edit</a>
       <% end %>
