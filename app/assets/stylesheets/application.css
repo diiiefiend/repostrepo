@@ -56,6 +56,12 @@ body{
 #header h1 a:hover em{
   color: #8E8E90;
 }
+#header h1 a:hover:after{
+  content: "click for all subs";
+  font-size: 12px;
+  letter-spacing: normal;
+}
+
 #header p{
   float: right;
   font-size: 12px;

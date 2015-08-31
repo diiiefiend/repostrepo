@@ -13,7 +13,7 @@
 <h1><a href="/">Discover<em>it</em></a></h1>
 <p align="right">
   <% if logged_in? %>
-  Logged in as <a href="<%= user_url %>"><%= current_user.email %></a> - <a href="<%= delete_session_url %>">Log out?</a>
+  Logged in as <a href="<%= user_url(current_user) %>"><%= current_user.email %></a> - <a href="<%= delete_session_url %>">Log out?</a>
   <% else %>
   <a href="<%= new_session_url %>">Log in</a> | <a href="<%= new_user_url %>">Sign Up</a>
   <% end %>
