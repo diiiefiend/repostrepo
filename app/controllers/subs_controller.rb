@@ -1,4 +1,5 @@
 class SubsController < ApplicationController
+  before_action :ensure_logged_in
   before_action :ensure_moderator, only: [:edit, :update, :destroy]
 
   def new

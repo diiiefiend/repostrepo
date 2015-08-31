@@ -30,6 +30,7 @@ body{
   width: 80%;
 }
 
+/* header stuff */
 #header{
   background: #374552;
   border-bottom: 5px solid #F9E1C5;
@@ -66,10 +67,12 @@ body{
   color: #F9E1C5;
 }
 
+/* content stuff */
 #content{
   background: #D1D2CC;
   padding: 10px;
   font-size: 16px;
+  margin-bottom: 5px;
 }
 
 .votable .reply_link{
@@ -121,10 +124,29 @@ body{
   padding-left: 10px;
 }
 
+.clearfix:after{
+  clear: both;
+  display: block;
+  content: "";
+}
+
 .clear{
   clear: both;
 }
 
+/* footer stuff */
+#footer{
+  border-top: 5px solid #F9E1C5;
+}
+#footer p{
+  margin: 5px 0 0 0;
+  padding: 10px;
+  font-size: 10px;
+  background: #F9E1C5;
+  color: #8E8E90;
+}
+
+/* general tags */
 a{
   text-decoration: none;
   color: #404A4C;
@@ -153,4 +175,24 @@ li{
 
 hr{
   clear: both;
+}
+
+label{
+  float: left;
+  display: block;
+  text-align: right;
+  width: 80px;
+  margin-right: 10px;
+}
+
+input, textarea{
+  background: #e9eae4;
+  border: 0;
+  padding: 2px;
+  border-bottom: 2px solid white;
+  margin: 0 0 5px 0;
+}
+
+textarea{
+  display: block;
 }

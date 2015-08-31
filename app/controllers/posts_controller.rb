@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :ensure_logged_in
   before_action :ensure_sub, only: :create
 
   def new

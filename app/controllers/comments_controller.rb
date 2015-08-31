@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :ensure_logged_in
+
   def new
     @comment = Comment.new
     render :new

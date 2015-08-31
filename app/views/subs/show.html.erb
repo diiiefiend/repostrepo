@@ -1,9 +1,9 @@
 <h1><%= @sub.title %></h1>
 <p><%= @sub.description %></p>
 
-<ul class="votable">
+<ul class="votable clearfix">
   <% @sub.posts.each do |post| %>
-    <li>
+    <li class="clearfix">
       <div class="vote_container">
        <form action="<%= upvote_post_url(post) %>" method="post">
          <%= form_auth %>
@@ -19,9 +19,7 @@
          - <a href="<%= edit_post_url(post) %>">edit</a>
       <% end %>
       </p>
-      <div class="clear"></div>
     </li>
   <% end %>
 </ul>
-<div class="clear"></div>
 <a href="<%= new_post_url %>?sub_id=<%= @sub.id %>">New Post</a>
