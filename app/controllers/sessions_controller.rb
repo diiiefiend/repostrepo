@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :ensure_logged_in, only: :destroy
+
   def new
     @user = User.new
     render :new
@@ -14,7 +16,7 @@ class SessionsController < ApplicationController
       render :new
     else
       log_in!(@user)
-      redirect_to user_url
+      redirect_to user_url(@user)
     end
   end
 

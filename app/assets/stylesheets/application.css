@@ -131,6 +131,10 @@ body{
   margin-bottom: -20px;
 }
 
+.vote_container + p a:first-child{
+  font-style: normal;
+}
+
 ul.votable li p:last-child{
   clear: left;
   display: block;
