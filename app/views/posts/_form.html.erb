@@ -2,23 +2,17 @@
 
 <label for="title">Title*</label>
 <input type="text" name="post[title]" id="title" value="<%= @post.title %>">
-<br><br>
 
 <label for="url">URL</label>
 <input type="text" name="post[url]" id="url" value="<%= @post.url %>">
-<br><br>
 
 <label for="content">Content</label>
 <textarea name="post[content]" id="content"><%= @post.content %></textarea>
-<br><br>
 
 <label for="sub">Post to sub*</label>
-<br>
   <% Sub.all.each do |sub| %>
     <input type="checkbox" name="post[sub_id][]" id="sub_id_<%= sub.id %>" value="<%= sub.id %>"
       <%= "checked" if params[:sub_id].to_i == sub.id || @post.sub_ids.include?(sub.id) %>
     >
     <label for="sub_id_<%= sub.id %>"><%= sub.title %></label>
-    <br>
   <% end %>
-<br><br>

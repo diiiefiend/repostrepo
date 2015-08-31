@@ -9,16 +9,18 @@
          <%= form_auth %>
          <button>^</button>
        </form>
+       <p><%= post.score %></p>
        <form action="<%= downvote_post_url(post) %>" method="post">
          <%= form_auth %>
          <button>v</button>
        </form>
      </div>
-      <p><a href="<%= post_url(post) %>"><%= post.title %></a> (<%= post.score %>) by <%= post.author.email %>
+      <p><a href="<%= post_url(post) %>"><%= post.title %></a>
       <% if current_user == post.author %>
          - <a href="<%= edit_post_url(post) %>">edit</a>
       <% end %>
       </p>
+      <p>by <%= post.author.email %>; <a href="<%= post_url(post) %>/#comments"><%= post.comments.count %> comments</a></p>
     </li>
   <% end %>
 </ul>

@@ -8,20 +8,19 @@
 </head>
 <body>
 
-<div id = "container">
-<div id = "header">
+<div id="container">
+<div id="header" class="clearfix">
 <h1><a href="/">Discover<em>it</em></a></h1>
 <p align="right">
   <% if logged_in? %>
-  Logged in as <%= current_user.email %> - <a href="<%= delete_session_url %>">Log out?</a>
+  Logged in as <a href="<%= user_url %>"><%= current_user.email %></a> - <a href="<%= delete_session_url %>">Log out?</a>
   <% else %>
-  <a href="<%= new_session_url %>">Log in</a> || <a href="<%= new_user_url %>">Sign Up</a>
+  <a href="<%= new_session_url %>">Log in</a> | <a href="<%= new_user_url %>">Sign Up</a>
   <% end %>
 </p>
-<div class = "clear"></div>
 </div>
 
-<div id="content">
+<div id="cont">
 <% if flash[:errors] %>
   <ul id="errors">
     <% flash[:errors].each do |error| %>
@@ -34,7 +33,7 @@
 </div>
 
 <div id="footer">
-<p>Created by <a href="http://arielity.net" target="_blank">Ariel Hou</a>, based off a skeleton project with <a href="https://github.com/aivensong" target="_blank">Aiven Song</a>. Inspired by <a href="http://reddit.com" target="_blank">Reddit</a>.</p>
+<p>Developed by <a href="http://arielity.net" target="_blank">Ariel Hou</a>, based off a skeleton project with <a href="https://github.com/aivensong" target="_blank">Aiven Song</a>. Inspired by <a href="http://reddit.com" target="_blank">Reddit</a>.</p>
 </div>
 </div>
 </body>

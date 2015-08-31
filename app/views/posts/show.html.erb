@@ -16,7 +16,7 @@
 
 <% if !@post.comments.empty? %>
 <hr>
-<h3>Comments</h3>
+<h3 id="comments">Comments</h3>
   <ul class="votable comments">
   <% top_level_comments = @all_comments.where("parent_comment_id IS NULL") %>
   <% top_level_comments.each do |comment| %>

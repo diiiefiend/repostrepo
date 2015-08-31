@@ -67,8 +67,8 @@ body{
   color: #F9E1C5;
 }
 
-/* content stuff */
-#content{
+/* cont stuff */
+#cont{
   background: #D1D2CC;
   padding: 10px;
   font-size: 16px;
@@ -76,16 +76,18 @@ body{
 }
 
 .votable .reply_link{
-  float: right;
+  /* leaving this here for now */
 }
 
 .votable p{
-  margin-bottom: 0;
+  margin: 5px 0;
 }
 
 .votable li{
   list-style: none;
-  margin-left: 20px;
+  margin: 10px 0 10px 20px;
+  padding: 1px 1px 1px 5px;
+  background: #DADBD5;
 }
 
 .vote_container{
@@ -93,18 +95,25 @@ body{
   margin-left: -40px;
   display: block;
   float: left;
+  margin-bottom: -15px;
 }
 
-.vote_container form{
-    float: right;
-    margin: 0;
+.vote_container form, .vote_container p{
+  float: right;
+  margin: 0;
+  clear: right;
+  padding: 1px 5px;
+}
+
+.vote_container p{
+  font-size: 12px;
+  color: #8B8C87;
 }
 
 .vote_container button{
   float: left;
   background: transparent;
   border: 0;
-  padding: 5px;
   font-size: 10px;
 }
 .vote_container button:hover{
@@ -113,6 +122,13 @@ body{
 
 .vote_container + p{
   float: left;
+  margin-bottom: -20px;
+}
+
+ul.votable li p:last-child{
+  clear: left;
+  display: block;
+  font-size: 12px;
 }
 
 .comments ul{
@@ -120,7 +136,7 @@ body{
 }
 
 .comments li{
-  border-left: 2px dashed #F9E1C5;
+  border-left: 2px dotted #F9E1C5;
   padding-left: 10px;
 }
 
@@ -128,10 +144,6 @@ body{
   clear: both;
   display: block;
   content: "";
-}
-
-.clear{
-  clear: both;
 }
 
 /* footer stuff */
@@ -156,8 +168,12 @@ a:hover{
   color: white;
 }
 
-h2, h3, h4, h5{
+h2, h3, h4{
   margin: 5px 0 10px 0;
+}
+
+h5{
+  margin: 5px 0;
 }
 
 ul, p, form{
@@ -170,11 +186,12 @@ ul{
 
 li{
   margin: 5px;
-  list-style: inside;
+  list-style: none;
 }
 
 hr{
   clear: both;
+  margin: 5px 0;
 }
 
 label{
@@ -190,9 +207,17 @@ input, textarea{
   border: 0;
   padding: 2px;
   border-bottom: 2px solid white;
-  margin: 0 0 5px 0;
+  margin: 0 0 10px 0;
+  display: block;
+  width: 200px;
 }
 
-textarea{
-  display: block;
+input[type="checkbox"] + label{
+  float: none;
+  display: inline;
+}
+
+input[type="checkbox"], input[type="submit"], input[type="reset"]{
+  display: inline;
+  width: auto;
 }

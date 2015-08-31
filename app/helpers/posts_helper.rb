@@ -7,19 +7,19 @@ module PostsHelper
     a=""
      a += <<-HTML
       <li class="clearfix">
-        <h5>#{comment.author.email} @ #{comment.created_at}: (#{comment.score})</h5>
 
         <div class="vote_container clearfix">
         <form action="#{ upvote_comment_url(comment) }" method="post">
           #{form_auth}
           <button>^</button>
         </form>
+        <p>#{comment.score}</p>
         <form action="#{ downvote_comment_url(comment) }" method="post">
           #{form_auth}
           <button>v</button>
         </form>
         </div>
-
+        <h5>#{comment.author.email} @ #{comment.created_at.to_s(:long)}:</h5>
         <p>#{comment.content}</p>
 
         <p class="reply_link"><a href="#{comment_url(comment)}">reply</a></p>
