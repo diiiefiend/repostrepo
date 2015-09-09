@@ -20,7 +20,7 @@
          - <a href="<%= edit_post_url(post) %>">edit</a>
       <% end %>
       </p>
-      <p>by <a href="<%= user_url(post.author) %>"><%= post.author.username %></a>; <a href="<%= post_url(post) %>/#comments"><%= post.comments.count %> comments</a></p>
+      <p>by <a href="<%= user_url(post.author) %>"><%= post.author.username %></a> @ <%= post.created_at.to_s(:long) %>; <a href="<%= post_url(post) %>/#comments"><%= post.comments.count %> comments</a></p>
     </li>
   <% end %>
 </ul>

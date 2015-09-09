@@ -4,7 +4,7 @@
   <% @post.subs.each do |sub| %>
   <a href="<%= sub_url(sub) %>"><%= sub.title %></a>,
   <% end %>
-  by <a href="<%= user_url(@post.author) %>"><%= @post.author.username %></a>
+  by <a href="<%= user_url(@post.author) %>"><%= @post.author.username %></a> @ <%= @post.created_at.to_s(:long) %>
 </h4>
 
 <% if current_user == @post.author %>
