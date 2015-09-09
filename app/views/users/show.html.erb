@@ -8,7 +8,7 @@
 <% end %>
 <hr class="no-clear">
 <h3>Latest Posts</h3>
-<ul>
+<ul class="no-em">
   <% last_posts = @user.posts.order(created_at: :desc).limit(5) %>
   <% last_posts.each do |post| %>
     <li>
@@ -22,7 +22,7 @@
 </ul>
 <hr class="no-clear">
 <h3>Latest Comments</h3>
-<ul>
+<ul class="no-em">
   <% last_comments = @user.comments.order(created_at: :desc).limit(5) %>
   <% last_comments.each do |comment| %>
     <li>

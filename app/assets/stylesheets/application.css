@@ -150,7 +150,7 @@ ul.votable li p:last-child{
   padding-left: 10px;
 }
 
-/*profile stuff*/
+/* profile stuff */
 
 .prof-pic{
   float: right;
@@ -158,16 +158,6 @@ ul.votable li p:last-child{
   height: auto;
   border: 5px solid white;
   transform: rotate(5deg);
-}
-
-hr.no-clear{
-  clear: none;
-}
-
-.clearfix:after{
-  clear: both;
-  display: block;
-  content: "";
 }
 
 /* footer stuff */
@@ -180,6 +170,26 @@ hr.no-clear{
   font-size: 10px;
   background: #F9E1C5;
   color: #8E8E90;
+}
+
+/* general use selectors */
+
+.no-em li a:first-child{
+  font-style: normal;
+}
+
+ul.strong li a:first-child{
+  font-weight: bold;
+}
+
+hr.no-clear{
+  clear: none;
+}
+
+.clearfix:after{
+  clear: both;
+  display: block;
+  content: "";
 }
 
 /* general tags */
