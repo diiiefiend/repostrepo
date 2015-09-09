@@ -5,7 +5,7 @@
 <% unless @comment.child_comments.empty? %>
   <h3>Replies</h3>
   <% @comment.child_comments.each do |reply| %>
-    <h5><%= reply.author.email %> @ <%= reply.created_at %>:</h5>
+    <h5><a href="<%= user_url(reply.author) %>"><%= reply.author.username %></a> @ <%= reply.created_at %>:</h5>
     <p><%= reply.content %></p>
   <% end %>
 <% end %>

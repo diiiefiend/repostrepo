@@ -19,7 +19,7 @@ module PostsHelper
           <button>v</button>
         </form>
         </div>
-        <h5>#{comment.author.email} @ #{comment.created_at.to_s(:long)}:</h5>
+        <h5><a href="#{user_url(comment.author)}">#{comment.author.username}</a> @ #{comment.created_at.to_s(:long)}:</h5>
         <p>#{comment.content}</p>
 
         <p class="reply_link"><a href="#{comment_url(comment)}">reply</a></p>
