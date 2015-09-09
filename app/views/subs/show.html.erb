@@ -2,7 +2,7 @@
 <p><%= @sub.description %></p>
 
 <ul class="votable clearfix">
-  <% @sub.posts.each do |post| %>
+  <% @sub.posts.order("created_at").each do |post| %>
     <li class="clearfix">
       <div class="vote_container">
        <form action="<%= upvote_post_url(post) %>" method="post">

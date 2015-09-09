@@ -1,3 +1,37 @@
-<h1><%= @user.email %></h1>
+<% if @user.prof_img %>
+  <img src="<%= image_path(@user.prof_img) %>" alt="prof-pic" class="prof-pic">
+<% end %>
+<h1><%= @user.username %></h1>
+<h3>Email: <%= @user.email %></h3>
+<% if @user.location %>
+<h3>Location: <%= @user.location %></h3>
+<% end %>
+<hr class="no-clear">
 <h3>Latest Posts</h3>
+<ul>
+  <% last_posts = @user.posts.order(created_at: :desc).limit(5) %>
+  <% last_posts.each do |post| %>
+    <li>
+      <a href="<%= post_url(post) %>"><%= post.title %></a> in
+      <% post.subs.each do |sub| %>
+        <a href="<%= sub_url(sub) %>"><%= sub.title %></a>
+        <% if sub != post.subs.last %>, <% end %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+<hr class="no-clear">
 <h3>Latest Comments</h3>
+<ul>
+  <% last_comments = @user.comments.order(created_at: :desc).limit(5) %>
+  <% last_comments.each do |comment| %>
+    <li>
+      <a href="<%= comment_url(comment) %>"><%= comment.content[0..30] %>(...)</a> on
+      <a href="<%= post_url(comment.post) %>"><%= comment.post.title %></a> in
+      <% comment.post.subs.each do |sub| %>
+        <a href="<%= sub_url(sub) %>"><%= sub.title %></a>
+        <% if sub != comment.post.subs.last %>, <% end %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

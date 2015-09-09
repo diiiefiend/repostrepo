@@ -28,7 +28,7 @@ class Post < ActiveRecord::Base
     self.votes.each do |vote|
       score += vote.value
     end
-    
+
     score
   end
 end

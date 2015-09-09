@@ -150,6 +150,20 @@ ul.votable li p:last-child{
   padding-left: 10px;
 }
 
+/*profile stuff*/
+
+.prof-pic{
+  float: right;
+  width: 40%;
+  height: auto;
+  border: 5px solid white;
+  transform: rotate(5deg);
+}
+
+hr.no-clear{
+  clear: none;
+}
+
 .clearfix:after{
   clear: both;
   display: block;
