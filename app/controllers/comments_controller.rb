@@ -8,7 +8,11 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.new(comment_params)
-    flash[:errors] = @comment.errors.full_messages unless @comment.save
+    if @comment.save
+      @comment.post.update(last_activity_stamp: @comment.created_at)
+    else
+      flash[:errors] = @comment.errors.full_messages
+    end
 
     redirect_to post_url(@comment.post_id)
   end
