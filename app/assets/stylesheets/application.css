@@ -57,7 +57,7 @@ body{
   color: #8E8E90;
 }
 #header h1 a:hover:after{
-  content: "click for all subs";
+  content: "click for the front page!";
   font-size: 12px;
   letter-spacing: normal;
 }

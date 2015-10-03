@@ -1,0 +1,27 @@
+<li class="clearfix">
+  <div class="vote_container">
+   <form action="<%= upvote_post_url(post) %>" method="post">
+     <%= form_auth %>
+     <button>^</button>
+   </form>
+   <p><%= post.score %></p>
+   <form action="<%= downvote_post_url(post) %>" method="post">
+     <%= form_auth %>
+     <button>v</button>
+   </form>
+ </div>
+  <p><a href="<%= post_url(post) %>"><%= post.title %></a>
+  <% if current_user == post.author %>
+     - <a href="<%= edit_post_url(post) %>">edit</a>
+  <% end %>
+  </p>
+  <p>by <a href="<%= user_url(post.author) %>"><%= post.author.username %></a> @ <%= post.created_at.to_s(:long) %>
+    <% if fp %>
+      in
+      <% post.post_subs.each do |post_sub| %>
+        <a href="<%= sub_url(post_sub.sub_id) %>"><%= post_sub.sub.title %></a>,
+      <% end %>
+    <% end %>
+    ;
+    <a href="<%= post_url(post) %>/#comments"><%= post.comments.count %> comments</a></p>
+</li>

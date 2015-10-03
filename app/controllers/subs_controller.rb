@@ -2,6 +2,12 @@ class SubsController < ApplicationController
   before_action :ensure_logged_in
   before_action :ensure_moderator, only: [:edit, :update, :destroy]
 
+  def index
+    @posts = Post.all         #kinda weird but just like reddit
+
+    render :index
+  end
+
   def new
     @sub = Sub.new
 
@@ -32,12 +38,6 @@ class SubsController < ApplicationController
       flash.now[:errors] = @sub.errors.full_messages
       render :edit
     end
-  end
-
-  def index
-    @subs = Sub.all
-
-    render :index
   end
 
   def show
