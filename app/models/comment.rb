@@ -1,5 +1,6 @@
 class Comment < ActiveRecord::Base
   validates :content, :user_id, :post_id, presence: true
+  after_save :set_stamp
 
   belongs_to :author,
     class_name: "User",
@@ -22,5 +23,9 @@ class Comment < ActiveRecord::Base
     end
 
     score
+  end
+
+  def set_stamp
+    self.post.update(last_activity_stamp: self.updated_at)
   end
 end

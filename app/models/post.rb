@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   validates :title, :user_id, presence: true
+  after_save :set_stamp
 
   belongs_to :author,
     class_name: "User",
@@ -31,4 +32,12 @@ class Post < ActiveRecord::Base
 
     score
   end
+
+  def set_stamp
+    self.update_columns(last_activity_stamp: self.updated_at)   #skip the callback
+    self.subs.each do |sub|
+      sub.update(last_activity_stamp: self.updated_at)
+    end
+  end
+
 end

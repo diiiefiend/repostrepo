@@ -1,10 +1,13 @@
 <h1>All Subs</h1>
 
 <ul class="no-em strong">
-<% @subs.each do |sub| %>
+<% @subs.order(last_activity_stamp: :desc).each do |sub| %>
   <li>
     <a href=" <%= sub_url(sub.id) %>"><%= sub.title %></a>
     - <%= sub.description %>
+    <% if sub.last_activity_stamp %>
+      (last activity: <%= sub.last_activity_stamp.to_s(:long) %>)
+    <% end %>
     <% if current_user == sub.mod  %>
       (<a href="<%= edit_sub_url(sub.id) %>">edit</a>)
     <% end %>

@@ -14,7 +14,6 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(pars_for_post)
     if @post.save
       @post.sub_ids = sub_ids
-      @post.update(last_activity_stamp: @post.created_at)
       redirect_to post_url(@post)
     else
       flash.now[:errors] = @post.errors.full_messages
@@ -48,7 +47,6 @@ class PostsController < ApplicationController
 
     if @post.update(pars_for_post)
       @post.sub_ids = sub_ids
-      @post.update(last_activity_stamp: @post.updated_at)
       redirect_to post_url(@post)
     else
       flash.now[:errors] = @post.errors.full_messages
