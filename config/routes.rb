@@ -1,25 +1,24 @@
 Rails.application.routes.draw do
-  resources :users, only: [:new, :create, :show]
+  root to: 'application#root'
 
-  resource :session, only: [:new, :create] do
-    member do
-      get 'destroy', as: 'delete'
+  namespace :api, defaults: {format: :json} do
+
+    resources :users, only: [:create, :show, :index]
+
+    resource :session, only: [:create, :show, :destroy]
+
+    resources :subs
+
+    resources :posts, except: :index do
+      post :upvote, on: :member
+      post :downvote, on: :member
     end
+
+    resources :comments, only: [:create, :update, :show, :destroy, :new] do
+      post :upvote, on: :member
+      post :downvote, on: :member
+    end
+
   end
 
-  resources :subs
-
-  resources :posts, except: :index do
-    resources :comments, only: :new, on: :member
-
-    post :upvote, on: :member
-    post :downvote, on: :member
-  end
-
-  resources :comments, only: [:create, :show] do
-    post :upvote, on: :member
-    post :downvote, on: :member
-  end
-
-  root to: redirect('/subs')
 end

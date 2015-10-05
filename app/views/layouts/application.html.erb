@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>Discoverit</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all'%>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -12,11 +12,7 @@
 <div id="header" class="clearfix">
 <h1><a href="/">Discover<em>it</em></a></h1>
 <p align="right">
-  <% if logged_in? %>
-  Logged in as <a href="<%= user_url(current_user) %>"><%= current_user.username %></a> - <a href="<%= delete_session_url %>">Log out?</a>
-  <% else %>
-  <a href="<%= new_session_url %>">Log in</a> | <a href="<%= new_user_url %>">Sign Up</a>
-  <% end %>
+  
 </p>
 </div>
 

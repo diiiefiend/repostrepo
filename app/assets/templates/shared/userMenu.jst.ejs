@@ -1,0 +1,5 @@
+<% if(currentUser.isSignedIn()){%>
+  Logged in as <a href="#users/<%= currentUser.id %>"><%= currentUser.username() %></a> - <a href="javascript: void(0);" id="logout-link">Log out</a>
+<% } else { %>
+  <a href="#session/new">Log In</a> | <a href="#users/new">Sign Up</a>
+<% }; %>
