@@ -1,1 +1,8 @@
-<h1>FRONT PAGE</h1>
+<h1>Front Page</h1>
+<ul class="votable clearfix">
+  <% posts.each( function (post){ %>
+    <li>
+      <%= JST['posts/_post']({post: post, fp: true, current_user: user}) %>
+    </li>
+  <% }); %>
+</ul>

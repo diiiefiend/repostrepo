@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
     resources :subs
 
-    resources :posts, except: :index do
+    resources :posts do
       post :upvote, on: :member
       post :downvote, on: :member
     end

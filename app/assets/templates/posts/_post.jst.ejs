@@ -1,0 +1,25 @@
+<li class="clearfix">
+  <div class="vote_container">
+   <form>
+     <button>^</button>
+   </form>
+   <p><%= post.get("score") %></p>
+   <form>
+     <button>v</button>
+   </form>
+ </div>
+  <p><a href="#posts/<%= post.id %>"><%= post.escape("title") %></a>
+  <% if(current_user === post.author().id){ %>
+     - <a href="javascript:void(0);">edit</a>
+  <% }; %>
+  </p>
+  <p>by <a href="#users/<%= post.author().id %>"><%= post.author().escape("username") %></a> @ <%= post.escape("created_at") %>
+    <% if(fp){ %>
+      in
+      <% post.subs().each( function (sub){ %>
+        <a href="#subs/<%= sub.id %>"><%= sub.escape("title") %></a>,
+      <% }); %>
+    <% }; %>
+    ;
+    <a href="#posts/<%= post.id %>/#comments"><%= post.comments().length %> comments</a></p>
+</li>

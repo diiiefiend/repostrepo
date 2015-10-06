@@ -5,12 +5,13 @@ Discoverit.Routers.Router = Backbone.Router.extend({
 
   initialize: function (options){
     this.$el = options.$el;
-    // this._posts = new Discoverit.Collections.Posts();
+    this._posts = new Discoverit.Collections.Posts();
   },
 
   frontpage: function (){
-    var view = new Discoverit.Views.FrontPage();
-    this._swapView(view, {wait: false});
+    this._posts.fetch();
+    var view = new Discoverit.Views.FrontPage({collection: this._posts});
+    this._swapView(view);
   },
 
   // "private" methods
