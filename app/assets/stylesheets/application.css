@@ -73,6 +73,40 @@ body{
   color: #F9E1C5;
 }
 
+/* modal */
+.modal{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  opacity:0;
+  pointer-events: none;
+}
+.modal:target {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.modal > div {
+    width: 400px;
+    position: relative;
+    margin: 10% auto;
+    padding: 10px;
+    text-align: left;
+    background: #fff;
+}
+
+.close {
+    color: #606061;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-weight: bold;
+}
+
 /* cont stuff */
 #cont{
   background: #D1D2CC;

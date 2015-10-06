@@ -1,35 +1,15 @@
 Discoverit.Routers.Router = Backbone.Router.extend({
   routes: {
-    "" : "frontpage",
-
-    "users/new" : "newUser",
-    "session/new" : "signIn"
+    "" : "frontpage"
   },
 
   initialize: function (options){
     this.$el = options.$el;
-    // this._posts = new Discoverit.Collection.Posts();
+    // this._posts = new Discoverit.Collections.Posts();
   },
 
   frontpage: function (){
     var view = new Discoverit.Views.FrontPage();
-    this._swapView(view, {wait: false});
-  },
-
-  newUser: function (){
-    if(!this._requireSignedOut()) {return;}         //if not signed out, return
-    // var model = new this._users.model();
-    var view = new Discoverit.Views.UserForm({
-      // collection: this._users,
-      // model: model
-    });
-    this._swapView(view, {wait: false});
-  },
-
-  signIn: function (callback){
-    if (!this._requireSignedOut(callback)) { return; }    //if not signed out, return
-
-    var view = new Discoverit.Views.SignIn({callback: callback});
     this._swapView(view, {wait: false});
   },
 
