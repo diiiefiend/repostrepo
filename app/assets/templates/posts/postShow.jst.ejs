@@ -1,0 +1,30 @@
+<ul class="votable clearfix">
+  <li>
+    <%= JST["posts/_post"]({post: post, fp: true, current_user: Discoverit.currentUser}) %>
+  </li>
+</ul>
+
+<p><a href="<%= post.escape("url") %>" target="_blank"></a></p>
+<p><%= post.escape("content") %></p>
+
+<% if(post.comments().length > 0){ %>
+  <hr>
+  <h3 id="comments">Comments</h3>
+  <ul class="votable comments">
+    <% topLevelComments.forEach( function (comment){ %>
+      <li class="clearfix">
+        <%= JST["comments/_comment"]({comment: comment}) %>
+      </li>
+      <% if(post.commentHash()[comment.id]){ %>
+        <ul>
+          <% post.commentHash()[comment.id].forEach ( function (childComment){ %>
+            <li class="clearfix">
+              <% var c2 = post.comments().where({id: childComment.id})[0]; %>
+              <%= JST["comments/_comment"]({comment: c2}) %>
+            </li>
+          <% }); %>
+        </ul>
+      <% }; %>
+    <% }); %>
+  </ul>
+<% }; %>

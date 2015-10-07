@@ -42,7 +42,6 @@ module Api
 
     def edit
       @post = current_post
-
       render :edit
     end
 

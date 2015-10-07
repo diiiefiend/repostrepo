@@ -22,7 +22,9 @@ Discoverit.Routers.Router = Backbone.Router.extend({
   },
 
   showPost: function (id){
-
+    var post = this._posts.getOrFetch(id);
+    var view = new Discoverit.Views.PostShow({model: post});
+    this._swapView(view);
   },
 
   showSub: function (id){

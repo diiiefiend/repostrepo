@@ -22,6 +22,13 @@ Discoverit.Models.Post = Backbone.Model.extend({
     return this._comments.sort();
   },
 
+  commentHash: function (){
+    if(!this._commentHash){
+      this._commentHash = [];
+    };
+    return this._commentHash;
+  },
+
   toJSON: function (){
     return { post: _.clone(this.attributes) };
   },
@@ -36,9 +43,13 @@ Discoverit.Models.Post = Backbone.Model.extend({
       delete res.subs;
     }
     if(res.comments){
-      this.comments().set(res.comments);
+      this.comments().set(res.comments, {parse: true});
       delete res.comments;
     };
+    if(res.comment_hash){
+      this._commentHash = res.comment_hash;
+      delete res.comment_hash;
+    }
     return res;
   }
 });

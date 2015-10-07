@@ -1,0 +1,14 @@
+<div class="vote_container clearfix">
+<form>
+  <button>^</button>
+</form>
+<p><%= comment.get("score") %></p>
+<form>
+  <button>v</button>
+</form>
+</div>
+
+<h5><a href="#users/<%= comment.author().id %>"><%= comment.author().escape("username") %></a> @ <%= comment.get("created_at") %>:</h5>
+<p><%= comment.escape("content") %></p>
+
+<p class="reply_link"><a href="#comments/<%= comment.id %>/new">reply</a></p>
