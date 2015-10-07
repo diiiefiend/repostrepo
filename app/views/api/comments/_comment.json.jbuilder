@@ -5,6 +5,6 @@ json.score = comment.score
 
 json.(comment.author, :id, :username)
 
-# json.array! comment.child_comments do |child_comment|
-#   json.partial! 'api/comments/comment', comment: child_comment
-# end
+json.child_comments comment.child_comments do |child_comment|
+  json.partial! 'api/comments/comment', comment: child_comment
+end

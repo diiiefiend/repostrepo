@@ -7,13 +7,11 @@ end
 json.score post.score
 json.created_at post.created_at.to_formatted_s(:long)
 
+json.comment_count post.comments.length
+
 json.author do
   json.id post.author.id
   json.username post.author.username
-end
-
-json.comments post.comments do |comment|
-  json.partial! 'api/comments/comment', comment: comment
 end
 
 json.subs post.subs do |subreddit|
