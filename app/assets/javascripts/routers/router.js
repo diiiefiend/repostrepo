@@ -1,16 +1,33 @@
 Discoverit.Routers.Router = Backbone.Router.extend({
   routes: {
-    "" : "frontpage"
+    "" : "frontpage",
+
+    "posts/:id" : "showPost",
+
+    "subs/:id" : "showSub",
+
+    "users/:id" : "showUser"
   },
 
   initialize: function (options){
     this.$el = options.$el;
     this._posts = new Discoverit.Collections.Posts();
+    this._subs = new Discoverit.Collections.Subs();
   },
 
   frontpage: function (){
     this._posts.fetch();
     var view = new Discoverit.Views.FrontPage({collection: this._posts});
+    this._swapView(view);
+  },
+
+  showPost: function (id){
+
+  },
+
+  showSub: function (id){
+    var sub = this._subs.getOrFetch(id);
+    var view = new Discoverit.Views.SubShow({model: sub});
     this._swapView(view);
   },
 

@@ -62,7 +62,7 @@ module Api
     end
 
     def current_sub
-      Sub.find(params[:id])
+      Sub.includes(:posts).find(params[:id])
     end
   end
 end
