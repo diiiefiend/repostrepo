@@ -1,0 +1,11 @@
+<ul class="votable comments">
+  <% post.commentHash()[curId].forEach ( function (childComment){ %>
+    <li class="clearfix">
+      <% var c2 = post.comments().where({id: childComment.id})[0]; %>
+      <%= JST["comments/_comment"]({comment: c2}) %>
+      <% if(post.commentHash()[childComment.id]){  %>
+        <%= JST["comments/_commentsLoop"]({post: post, curId: childComment.id}) %>
+      <% }; %>
+    </li>
+  <% }); %>
+</ul>

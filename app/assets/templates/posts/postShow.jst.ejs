@@ -14,17 +14,10 @@
     <% topLevelComments.forEach( function (comment){ %>
       <li class="clearfix">
         <%= JST["comments/_comment"]({comment: comment}) %>
+        <% if(post.commentHash()[comment.id]){ %>
+          <%= JST["comments/_commentsLoop"]({post: post, curId: comment.id}) %>
+        <% }; %>
       </li>
-      <% if(post.commentHash()[comment.id]){ %>
-        <ul>
-          <% post.commentHash()[comment.id].forEach ( function (childComment){ %>
-            <li class="clearfix">
-              <% var c2 = post.comments().where({id: childComment.id})[0]; %>
-              <%= JST["comments/_comment"]({comment: c2}) %>
-            </li>
-          <% }); %>
-        </ul>
-      <% }; %>
     <% }); %>
   </ul>
 <% }; %>
