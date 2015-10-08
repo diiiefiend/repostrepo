@@ -9,7 +9,7 @@
    </form>
  </div>
   <p><a href="#posts/<%= post.id %>"><%= post.escape("title") %></a>
-  <% if(Discoverit.currentUser === post.author().id){ %>
+  <% if(Discoverit.currentUser.id === post.author().id){ %>
      - <a href="javascript:void(0);">edit</a>
   <% }; %>
   </p>
@@ -17,7 +17,7 @@
     <% if(fp){ %>
       in
       <% post.subs().each( function (sub){ %>
-        <a href="#subs/<%= sub.id %>"><%= sub.escape("title") %></a>,
+        <a href="#subs/<%= sub.id %>"><%= sub.escape("title") %></a><% if(sub !== post.subs().last()){ %>, <% }; %>
       <% }); %>
     <% }; %>
     ;

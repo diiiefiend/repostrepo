@@ -1,10 +1,12 @@
 Discoverit.Models.Comment = Backbone.Model.extend({
   urlRoot: function(){
-    return 'api/posts/'+ this.post.id +'/comments';
+    return 'api/posts/'+ this._post.id +'/comments';
   },
 
   initialize: function (models, options){
-    this.post = options.post
+    if(!this._post){        //sometimes will be set by parse
+      this._post = options.post
+    };
   },
 
   author: function (){
@@ -12,6 +14,13 @@ Discoverit.Models.Comment = Backbone.Model.extend({
       this._author = new Discoverit.Models.User();
     };
     return this._author;
+  },
+
+  post: function (){
+    if(!this._post){
+      this._post = new Discoverit.Models.Post();
+    };
+    return this._post;
   },
 
   toJSON: function (){
@@ -22,6 +31,10 @@ Discoverit.Models.Comment = Backbone.Model.extend({
     if(res.author){
       this.author().set(res.author);
       delete res.author;
+    };
+    if(res.post){
+      this.post().set(this.post().parse(res.post));
+      delete res.post;
     };
     return res;
   }

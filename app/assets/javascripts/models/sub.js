@@ -14,7 +14,7 @@ Discoverit.Models.Sub = Backbone.Model.extend({
 
   parse: function (res){
     if(res.posts){
-      this.posts().set(res.posts);
+      this.posts().set(res.posts, {parse: true});
       delete res.posts;
     };
     return res;

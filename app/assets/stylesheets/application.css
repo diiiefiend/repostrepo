@@ -212,7 +212,9 @@ ul.comments li > ul.comments{
 /* profile stuff */
 
 .prof-pic{
-  float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
   width: 40%;
   height: auto;
   border: 5px solid white;
@@ -239,10 +241,6 @@ ul.comments li > ul.comments{
 
 ul.strong li a:first-child{
   font-weight: bold;
-}
-
-hr.no-clear{
-  clear: none;
 }
 
 .clearfix:after{

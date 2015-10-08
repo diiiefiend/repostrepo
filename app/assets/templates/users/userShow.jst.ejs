@@ -7,7 +7,7 @@
 <% if(user.escape("location")){ %>
   <h3>Location: <%= user.escape("location")  %></h3>
 <% }; %>
-<hr class="no-clear">
+<hr>
 <h3>Latest Posts</h3>
 <ul class="no-em votable">
   <% user.lastPosts().each( function (post){ %>
@@ -15,12 +15,12 @@
   <% }); %>
 </ul>
 
-<hr class="no-clear">
+<hr>
 <h3>Latest Comments</h3>
 <ul class="no-em votable comments">
   <% user.lastComments().each( function (comment){ %>
     <li>
-      <%= JST["comments/_comment"]({comment: comment}) %>
+      <%= JST["comments/_comment"]({comment: comment, displayPost: true}) %>
     </li>
   <% }); %>
 </ul>

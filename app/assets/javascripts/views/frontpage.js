@@ -8,7 +8,7 @@ Discoverit.Views.FrontPage = Backbone.CompositeView.extend({
   },
 
   render: function (){
-    var template = this.template({posts: this.collection, fp: true});
+    var template = this.template({posts: this.collection});
     var sidebarView = new Discoverit.Views.SubsIndex({sidebar: true});
     this.$el.html(template);
     this.addSubview(".right_bar", sidebarView);

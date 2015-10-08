@@ -13,7 +13,7 @@
   <ul class="votable comments">
     <% topLevelComments.forEach( function (comment){ %>
       <li class="clearfix">
-        <%= JST["comments/_comment"]({comment: comment}) %>
+        <%= JST["comments/_comment"]({comment: comment, displayPost: false}) %>
         <% if(post.commentHash()[comment.id]){ %>
           <%= JST["comments/_commentsLoop"]({post: post, curId: comment.id}) %>
         <% }; %>

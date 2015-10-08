@@ -8,7 +8,14 @@
 </form>
 </div>
 
-<h5><a href="#users/<%= comment.author().id %>"><%= comment.author().escape("username") %></a> @ <%= comment.get("created_at") %>:</h5>
+<h5><a href="#users/<%= comment.author().id %>"><%= comment.author().escape("username") %></a> @ <%= comment.get("created_at") %>
+  <% if(displayPost){ %>
+    on <a href="#posts/<%= comment.get("post_id") %>"><%= comment.post().escape("title") %></a> in
+    <% comment.post().subs().each( function (sub){ %>
+      <a href="#subs/<%= sub.id %>"><%= sub.escape("title") %></a><% if(sub !== comment.post().subs().last()){ %>, <% }; %>
+    <% }); %>
+  <% }; %>
+  :</h5>
 <p><%= comment.escape("content") %></p>
 
 <p class="reply_link"><a href="#comments/<%= comment.id %>/new">reply</a></p>

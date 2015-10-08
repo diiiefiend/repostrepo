@@ -9,7 +9,7 @@ Discoverit.Views.SubShow = Backbone.CompositeView.extend({
   },
 
   render: function (){
-    var template = this.template({sub: this.model, posts: this.collection, fp: false});
+    var template = this.template({sub: this.model, posts: this.collection});
     this.$el.html(template);
     return this;
   }

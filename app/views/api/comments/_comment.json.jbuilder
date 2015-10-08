@@ -8,6 +8,6 @@ json.author do
   json.username comment.author.username
 end
 
-# json.child_comments comment.child_comments do |child_comment|
-#   json.partial! 'api/comments/comment', comment: child_comment
-# end
+json.post do
+  json.partial! 'api/posts/postBlurb', post: comment.post
+end

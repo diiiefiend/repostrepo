@@ -1,7 +1,7 @@
 <ul class="votable clearfix">
   <% posts.each( function (post){ %>
     <li>
-      <%= JST['posts/_post']({post: post, fp: false, current_user: Discoverit.currentUser}) %>
+      <%= JST['posts/_post']({post: post, fp: fp, current_user: Discoverit.currentUser}) %>
     </li>
   <% }); %>
 </ul>
