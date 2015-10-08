@@ -129,8 +129,11 @@ body{
 
 /* post items stuff */
 
-.votable .reply_link{
-  /* leaving this here for now */
+.votable .reply_link,
+ul.votable li p:last-child{
+  clear: left;
+  display: block;
+  font-size: 12px;
 }
 
 .votable p{
@@ -183,12 +186,6 @@ body{
   font-style: normal;
 }
 
-ul.votable li p:last-child{
-  clear: left;
-  display: block;
-  font-size: 12px;
-}
-
 .comments ul{
   margin-left: 20px;
 }
@@ -202,11 +199,8 @@ ul.comments li > ul.comments{
   padding-left: 10px;
 }
 
-.comments li > .comments li{
+[class*="commentLoop-"]{
   background: #D1D2CC;
-}
-.comments li > .comments li > .comments li{
-  background: #DADBD5;
 }
 
 /* profile stuff */

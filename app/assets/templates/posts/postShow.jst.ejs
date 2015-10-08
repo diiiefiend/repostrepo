@@ -1,7 +1,5 @@
-<ul class="votable clearfix">
-  <li>
-    <%= JST["posts/_post"]({post: post, fp: true}) %>
-  </li>
+<ul class="votable clearfix post">
+
 </ul>
 
 <p><a href="<%= post.escape("url") %>" target="_blank"></a></p>
@@ -10,14 +8,7 @@
 <% if(post.comments().length > 0){ %>
   <hr>
   <h3 id="comments">Comments</h3>
-  <ul class="votable comments">
-    <% topLevelComments.forEach( function (comment){ %>
-      <li class="clearfix">
-        <%= JST["comments/_comment"]({comment: comment, displayPost: false}) %>
-        <% if(post.commentHash()[comment.id]){ %>
-          <%= JST["comments/_commentsLoop"]({post: post, curId: comment.id}) %>
-        <% }; %>
-      </li>
-    <% }); %>
+  <ul class="votable comments" id="comment-area">
+
   </ul>
 <% }; %>

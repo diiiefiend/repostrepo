@@ -1,13 +1,13 @@
 <li class="clearfix">
   <div class="vote_container">
-   <form>
+  <form data-vote="1">
      <button>^</button>
    </form>
    <p><%= post.get("score") %></p>
-   <form>
+  <form data-vote="-1">
      <button>v</button>
    </form>
- </div>
+  </div>
   <p><a href="#posts/<%= post.id %>"><%= post.escape("title") %></a>
   <% if(Discoverit.currentUser.id === post.author().id){ %>
      - <a href="javascript:void(0);">edit</a>
@@ -21,5 +21,6 @@
       <% }); %>
     <% }; %>
     ;
-    <a href="#posts/<%= post.id %>#comments"><%= post.get("comment_count") %> comments</a></p>
+    <a href="#posts/<%= post.id %>#comments"><%= post.get("comment_count") %> comments</a>
+  </p>
 </li>

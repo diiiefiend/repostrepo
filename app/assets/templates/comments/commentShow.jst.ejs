@@ -1,0 +1,7 @@
+<li class="clearfix">
+  <%= JST["comments/_comment"]({comment: comment, displayPost: displayPost}) %>
+  <% if(post._commentHash && post.commentHash()[comment.id]){ %>
+    <div class="commentLoop-<%= comment.id %>">
+    </div>
+  <% }; %>
+</li>

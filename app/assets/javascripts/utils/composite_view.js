@@ -1,5 +1,5 @@
 Backbone.CompositeView = Backbone.View.extend({
-  addSubview: function (selector, subview, prepend) {
+  addSubview: function (selector, subview, prepend, options) {
     if (prepend) {
       this.subviews(selector).unshift(subview);
     } else {
@@ -7,7 +7,9 @@ Backbone.CompositeView = Backbone.View.extend({
     }
     // Try to attach the subview. Render it as a convenience.
     this.attachSubview(selector, subview, prepend);
-    // subview.render();
+    if(options && options.render){
+      subview.render();
+    };
   },
 
   attachSubview: function (selector, subview, prepend) {

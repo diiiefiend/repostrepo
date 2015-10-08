@@ -15,20 +15,19 @@ class CommentsController < ApplicationController
 
   def show
     @comment = current_comment
-
     render :show
   end
 
   def upvote
     @comment = current_comment
     Vote.create!(value: 1, votable_type: "Comment", votable_id: @comment.id)
-    redirect_to post_url(@comment.post)
+    render :show
   end
 
   def downvote
     @comment = current_comment
     Vote.create!(value: -1, votable_type: "Comment", votable_id: @comment.id)
-    redirect_to post_url(@comment.post)
+    render :show
   end
 
   private

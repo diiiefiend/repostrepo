@@ -9,18 +9,12 @@
 <% }; %>
 <hr>
 <h3>Latest Posts</h3>
-<ul class="no-em votable">
-  <% user.lastPosts().each( function (post){ %>
-    <%= JST["posts/_post"]({post: post, fp: true}) %>
-  <% }); %>
+<ul class="no-em votable posts">
+
 </ul>
 
 <hr>
 <h3>Latest Comments</h3>
 <ul class="no-em votable comments">
-  <% user.lastComments().each( function (comment){ %>
-    <li>
-      <%= JST["comments/_comment"]({comment: comment, displayPost: true}) %>
-    </li>
-  <% }); %>
+
 </ul>
