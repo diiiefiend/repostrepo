@@ -5,7 +5,7 @@ Discoverit.Models.Sub = Backbone.Model.extend({
     if(!this._posts){
       this._posts = new Discoverit.Collections.Posts();
     };
-    return this._posts.sort();
+    return this._posts;
   },
 
   toJSON: function (){

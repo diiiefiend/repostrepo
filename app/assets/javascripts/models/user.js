@@ -5,8 +5,35 @@ Discoverit.Models.User = Backbone.Model.extend({
     return this.escape('username');
   },
 
+  lastPosts: function (){
+    if(!this._lastPosts){
+      this._lastPosts = new Discoverit.Collections.Posts();
+    };
+    return this._lastPosts;
+  },
+
+  lastComments: function (){
+    if(!this._lastComments){
+      //set it up with a generic post object
+      this._lastComments = new Discoverit.Collections.Comments([], {post: new Discoverit.Models.Post()});
+    };
+    return this._lastComments;
+  },
+
   toJSON: function (){
     return { user: _.clone(this.attributes) };
+  },
+
+  parse: function (res){
+    if(res.last_posts){
+      this.lastPosts().set(res.last_posts, {parse: true});
+      delete res.last_posts;
+    };
+    if(res.last_comments){
+      this.lastComments().set(res.last_comments, {parse: true});
+      delete res.last_comments;
+    };
+    return res;
   }
 });
 

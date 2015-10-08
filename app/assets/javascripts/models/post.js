@@ -12,14 +12,14 @@ Discoverit.Models.Post = Backbone.Model.extend({
     if(!this._subs){
       this._subs = new Discoverit.Collections.Subs();
     };
-    return this._subs.sort();
+    return this._subs;
   },
 
   comments: function (){
     if(!this._comments){
       this._comments = new Discoverit.Collections.Comments([], {post: this});
     };
-    return this._comments.sort();
+    return this._comments;
   },
 
   commentHash: function (){

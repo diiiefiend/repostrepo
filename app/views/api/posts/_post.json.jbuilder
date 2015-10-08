@@ -14,6 +14,6 @@ json.author do
   json.username post.author.username
 end
 
-json.subs post.subs do |subreddit|
+json.subs post.subs.order(last_activity_stamp: :desc) do |subreddit|
   json.partial! 'api/subs/sub', sub: subreddit
 end

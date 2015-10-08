@@ -30,7 +30,7 @@ module Api
 
     def show
       @post = current_post
-      @all_comments = @post.comments.includes(:author)
+      @all_comments = @post.comments.includes(:author).order(created_at: :desc)
       @comment_hash = @post.comments_by_parent_id
       render :show
     end

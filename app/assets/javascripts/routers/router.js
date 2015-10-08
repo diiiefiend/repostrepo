@@ -13,6 +13,7 @@ Discoverit.Routers.Router = Backbone.Router.extend({
     this.$el = options.$el;
     this._posts = new Discoverit.Collections.Posts();
     this._subs = new Discoverit.Collections.Subs();
+    this._users = new Discoverit.Collections.Users();
   },
 
   frontpage: function (){
@@ -30,6 +31,12 @@ Discoverit.Routers.Router = Backbone.Router.extend({
   showSub: function (id){
     var sub = this._subs.getOrFetch(id);
     var view = new Discoverit.Views.SubShow({model: sub});
+    this._swapView(view);
+  },
+
+  showUser: function (id){
+    var user = this._users.getOrFetch(id);
+    var view = new Discoverit.Views.UserShow({model: user});
     this._swapView(view);
   },
 

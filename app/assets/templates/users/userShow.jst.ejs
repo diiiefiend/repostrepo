@@ -1,0 +1,26 @@
+<% if(user.get("prof_img")){ %>
+  <img src="<%= user.get("prof_img") %>" alt="prof-pic" class="prof-pic">
+<% }; %>
+
+<h1><%= user.escape("username") %></h1>
+<h3>Email: <%= user.escape("email") %></h3>
+<% if(user.escape("location")){ %>
+  <h3>Location: <%= user.escape("location")  %></h3>
+<% }; %>
+<hr class="no-clear">
+<h3>Latest Posts</h3>
+<ul class="no-em votable">
+  <% user.lastPosts().each( function (post){ %>
+    <%= JST["posts/_post"]({post: post, fp: true}) %>
+  <% }); %>
+</ul>
+
+<hr class="no-clear">
+<h3>Latest Comments</h3>
+<ul class="no-em votable comments">
+  <% user.lastComments().each( function (comment){ %>
+    <li>
+      <%= JST["comments/_comment"]({comment: comment}) %>
+    </li>
+  <% }); %>
+</ul>

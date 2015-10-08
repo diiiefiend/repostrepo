@@ -5,9 +5,9 @@ Discoverit.Collections.Comments = Backbone.BetterCollection.extend({
     return 'api/posts/'+ this.post.id +'/comments'
   },
 
-  comparator: function (comment){
-    return comment.get('created_at');
-  },
+  // comparator: function (comment){
+  //   return comment.get('created_at');
+  // },
 
   initialize: function (models, options){
     this.post = options.post;
