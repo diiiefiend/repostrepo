@@ -1,9 +1,9 @@
 <div class="vote_container clearfix">
-<form data-vote="1">
+<form data-vote="1" data-commentid="<%= comment.id %>">
   <button>^</button>
 </form>
 <p><%= comment.get("score") %></p>
-<form data-vote="-1">
+<form data-vote="-1" data-commentid="<%= comment.id %>">
   <button>v</button>
 </form>
 </div>

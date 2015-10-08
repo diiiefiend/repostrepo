@@ -186,15 +186,15 @@ ul.votable li p:last-child{
   font-style: normal;
 }
 
-.comments ul{
-  margin-left: 20px;
+ul.comments{
+  margin-left: 10px;
 }
 
 ul.comments li > ul.comments{
   margin-right: 10px;
 }
 
-.comments li{
+ul.comments li{
   border-left: 2px dotted #F9E1C5;
   padding-left: 10px;
 }
