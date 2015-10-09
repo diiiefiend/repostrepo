@@ -1,11 +1,11 @@
 <% if(currentUser.isSignedIn()){%>
   Logged in as <a href="#users/<%= currentUser.id %>"><%= currentUser.username() %></a> - <a href="javascript: void(0);" id="logout-link">Log out</a>
 <% } else { %>
-  <a href="#login">Log In</a> | <a href="#signup">Sign Up</a>
+  <a class="login-link" href="javascript:void(0);">Log In</a> | <a class="signup-link" href="javascript:void(0);">Sign Up</a>
 
-  <div id="login" class="modal">
+  <div id="login" class="hidden">
     <div>
-      <a href="#" class="close">cancel</a>
+      <a href="javascript:void(0);" class="close">cancel</a>
       <h2>Log in</h2>
       <form>
         <label>Email</label>
@@ -17,9 +17,9 @@
     </div>
   </div>
 
-  <div id="signup" class="modal">
+  <div id="signup" class="hidden">
     <div>
-      <a href="#" class="close">cancel</a>
+      <a href="javascript:void(0);" class="close">cancel</a>
       <h2>Sign up</h2>
       <form>
         <label>Username</label>

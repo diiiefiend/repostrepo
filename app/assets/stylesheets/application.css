@@ -74,6 +74,10 @@ body{
 }
 
 /* modal */
+.hidden{
+  display: none;
+}
+
 .modal{
   position: fixed;
   top: 0;
@@ -82,12 +86,8 @@ body{
   left: 0;
   background: rgba(0, 0, 0, 0.8);
   z-index: 1000;
-  opacity:0;
-  pointer-events: none;
-}
-.modal:target {
-    opacity:1;
-    pointer-events: auto;
+  opacity:1;
+  pointer-events: auto;
 }
 
 .modal > div {

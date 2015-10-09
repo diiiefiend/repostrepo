@@ -3,15 +3,34 @@ Discoverit.Views.UserMenu = Backbone.View.extend({
 
   events: {
     "click #logout-link": "signOut",
+    "click .login-link" : "showLogin",
+    "click .signup-link" : "showSignup",
+    "click .close" : "hideModal",
     "submit #login form": "logIn",
     "submit #signup form": "newUser"
   },
 
   initialize: function (options){
     this.collection = new Discoverit.Collections.Users();
-    
+
     this.listenTo(Discoverit.currentUser, "signIn signOut", this.render);
     this.render();
+  },
+
+  showLogin: function (e){
+    e.preventDefault;
+    $("#login").removeClass("hidden").addClass("modal");
+  },
+
+  showSignup: function (e){
+    e.preventDefault;
+    $("#signup").removeClass("hidden").addClass("modal");
+  },
+
+  hideModal: function (e){
+    e.preventDefault;
+    $("#login").removeClass("modal").addClass("hidden");
+    $("#signup").removeClass("modal").addClass("hidden");
   },
 
   render: function (){

@@ -72,7 +72,7 @@ Discoverit.Models.CurrentUser = Discoverit.Models.User.extend({
       data: credentials,
       dataType: "json",
       success: function(data){
-        model.set(data);
+        model.set(model.parse(data));
         options.success && options.success();
       },
       error: function(){
