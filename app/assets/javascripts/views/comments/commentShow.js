@@ -41,7 +41,12 @@ Discoverit.Views.CommentShow = Backbone.CompositeView.extend({
   },
 
   render: function (options){
-    var previousVote = Discoverit.currentUser.getVote("Comment" + this.model.id);
+    var previousVote;
+    if(Discoverit.currentUser){
+      previousVote = Discoverit.currentUser.getVote("Comment" + this.model.id);
+    } else {
+      previousVote = null;
+    };
     var template = this.template({comment: this.model, displayPost: this.displayPost, post: this.post, previousVote: previousVote});
 
     if(options && options.rerender){
