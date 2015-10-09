@@ -243,6 +243,18 @@ ul.strong li a:first-child{
   content: "";
 }
 
+.bolded{
+  font-weight: bold;
+}
+
+.orange{
+  color: orange;
+}
+
+.blue{
+  color: blue;
+}
+
 /* general tags */
 a{
   text-decoration: none;

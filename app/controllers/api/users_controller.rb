@@ -14,7 +14,7 @@ module Api
     end
 
     def show
-      @user = User.includes(:comments, :posts).find(params[:id]);
+      @user = User.includes(:comments, :posts, :votes).find(params[:id]);
       render :show
     end
 

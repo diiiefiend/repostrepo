@@ -62,13 +62,13 @@ module Api
 
     def upvote
       @post = current_post
-      Vote.create!(value: 1, votable_type: "Post", votable_id: @post.id)
+      Vote.create!(value: 1, votable_type: "Post", votable_id: @post.id, user_id: current_user.id)
       render :blurb
     end
 
     def downvote
       @post = current_post
-      Vote.create!(value: -1, votable_type: "Post", votable_id: @post.id)
+      Vote.create!(value: -1, votable_type: "Post", votable_id: @post.id, user_id: current_user.id)
       render :blurb
     end
 

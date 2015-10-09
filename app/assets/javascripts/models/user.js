@@ -33,6 +33,13 @@ Discoverit.Models.User = Backbone.Model.extend({
       this.lastComments().set(res.last_comments, {parse: true});
       delete res.last_comments;
     };
+    if(res.votes){         //only gets retrieved for currentUser
+      this.votes = {};     //key is votable_type+votable_id, value is vote value
+      res.votes.forEach( function(vote){
+        this.votes[vote.votableKey] = vote.value;
+      }.bind(this));
+      delete res.votes;
+    }
     return res;
   }
 });
@@ -43,6 +50,10 @@ Discoverit.Models.CurrentUser = Discoverit.Models.User.extend({
 
   initialize: function (){
     this.listenTo(this, "change", this.fireSessionEvent);
+  },
+
+  getVote: function (votableKey){
+    return this.votes[votableKey];   //either returns the value of the vote or undefined if votableKey not found
   },
 
   isSignedIn: function (){

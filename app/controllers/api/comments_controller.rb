@@ -20,13 +20,13 @@ module Api
 
     def upvote
       @comment = current_comment
-      Vote.create!(value: 1, votable_type: "Comment", votable_id: @comment.id)
+      Vote.create!(value: 1, votable_type: "Comment", votable_id: @comment.id, user_id: current_user.id)
       render :show
     end
 
     def downvote
       @comment = current_comment
-      Vote.create!(value: -1, votable_type: "Comment", votable_id: @comment.id)
+      Vote.create!(value: -1, votable_type: "Comment", votable_id: @comment.id, user_id: current_user.id)
       render :show
     end
 

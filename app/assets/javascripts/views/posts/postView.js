@@ -15,37 +15,28 @@ Discoverit.Views.PostView = Backbone.CompositeView.extend({
     var vote = $(e.currentTarget).data('vote');
 
     var model = this.model;
-    if(vote > 0){
-      $.ajax({
-        url: "api/posts/"+ model.id +"/upvote",
-        type: "POST",
-        dataType: "json",
-        success: function (data){
-          model.set(model.parse(data));
-          this.render();
-        }.bind(this),
-        error: function (data){
-          options && options.error && options.error(model, data, options);
-        }
-      });
-    } else {
-      $.ajax({
-        url: "api/posts/"+ model.id +"/downvote",
-        type: "POST",
-        dataType: "json",
-        success: function (data){
-          model.set(model.parse(data));
-          this.render();
-        }.bind(this),
-        error: function (data){
-          options && options.error && options.error(model, data, options);
-        }
-      });
-    };
+
+    var url = "api/posts/" + model.id;
+    (vote > 0) ? url += "/upvote" : url += "/downvote";
+
+    $.ajax({
+      url: url,
+      type: "POST",
+      dataType: "json",
+      success: function (data){
+        model.set(model.parse(data));
+        Discoverit.currentUser.votes["Post" + model.id] = vote;
+        this.render();
+      }.bind(this),
+      error: function (data){
+        options && options.error && options.error(model, data, options);
+      }
+    });
   },
 
   render: function (){
-    var template = this.template({post: this.model, fp: this.fp});
+    var previousVote = Discoverit.currentUser.getVote("Post" + this.model.id);
+    var template = this.template({post: this.model, fp: this.fp, previousVote: previousVote});
     this.$el.html(template);
     return this;
   }

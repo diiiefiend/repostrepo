@@ -19,39 +19,30 @@ Discoverit.Views.CommentShow = Backbone.CompositeView.extend({
     var commentId = $(e.currentTarget).data('commentid');
 
     var model = this.model;
+
+    var url = "api/posts/"+ model.post().id +"/comments/"+ model.id;
+    (vote > 0) ? url += "/upvote" : url += "/downvote";
+
     if(this.model.id === commentId){
-      if(vote > 0){
-        $.ajax({
-          url: "api/posts/"+ model.post().id +"/comments/"+ model.id +"/upvote",
-          type: "POST",
-          dataType: "json",
-          success: function (data){
-            model.set(model.parse(data));
-            this.render({rerender: true});
-          }.bind(this),
-          error: function (data){
-            options && options.error && options.error(model, data, options);
-          }
-        });
-      } else {
-        $.ajax({
-          url: "api/posts/"+ model.post().id +"/comments/"+ model.id +"/downvote",
-          type: "POST",
-          dataType: "json",
-          success: function (data){
-            model.set(model.parse(data));
-            this.render({rerender: true});
-          }.bind(this),
-          error: function (data){
-            options && options.error && options.error(model, data, options);
-          }
-        });
-      };
+      $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        success: function (data){
+          model.set(model.parse(data));
+          Discoverit.currentUser.votes["Comment" + model.id] = vote;
+          this.render({rerender: true});
+        }.bind(this),
+        error: function (data){
+          options && options.error && options.error(model, data, options);
+        }
+      });
     };
   },
 
   render: function (options){
-    var template = this.template({comment: this.model, displayPost: this.displayPost, post: this.post});
+    var previousVote = Discoverit.currentUser.getVote("Comment" + this.model.id);
+    var template = this.template({comment: this.model, displayPost: this.displayPost, post: this.post, previousVote: previousVote});
 
     if(options && options.rerender){
       $childComments = this.$el.find("[class^=commentLoop]").eq(0).html();

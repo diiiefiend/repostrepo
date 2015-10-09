@@ -1,11 +1,19 @@
 <li class="clearfix">
   <div class="vote_container">
   <form data-vote="1">
+    <% if(previousVote && previousVote > 0){ %>
+     <button disabled class="bolded orange">^</button>
+    <% } else { %>
      <button>^</button>
+    <% }; %>
    </form>
    <p><%= post.get("score") %></p>
   <form data-vote="-1">
+    <% if(previousVote && previousVote < 0){ %>
+     <button disabled class="bolded blue">v</button>
+    <% } else { %>
      <button>v</button>
+    <% }; %>
    </form>
   </div>
   <p><a href="#posts/<%= post.id %>"><%= post.escape("title") %></a>
