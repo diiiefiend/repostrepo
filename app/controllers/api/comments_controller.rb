@@ -20,13 +20,20 @@ module Api
 
     def upvote
       @comment = current_comment
+      delete_vote
       Vote.create!(value: 1, votable_type: "Comment", votable_id: @comment.id, user_id: current_user.id)
       render :show
     end
 
     def downvote
       @comment = current_comment
+      delete_vote
       Vote.create!(value: -1, votable_type: "Comment", votable_id: @comment.id, user_id: current_user.id)
+      render :show
+    end
+
+    def clear_vote
+      delete_vote
       render :show
     end
 
@@ -38,6 +45,12 @@ module Api
 
     def current_comment
       Comment.find(params[:id])
+    end
+
+    def delete_vote
+      @comment = current_comment
+      prior_vote = current_user.votes.where(votable_type: 'Comment', votable_id: @comment.id);
+      Vote.destroy(prior_vote) if !prior_vote.empty?
     end
   end
 end

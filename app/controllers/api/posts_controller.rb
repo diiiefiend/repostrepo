@@ -62,15 +62,23 @@ module Api
 
     def upvote
       @post = current_post
+      delete_vote
       Vote.create!(value: 1, votable_type: "Post", votable_id: @post.id, user_id: current_user.id)
       render :blurb
     end
 
     def downvote
       @post = current_post
+      delete_vote
       Vote.create!(value: -1, votable_type: "Post", votable_id: @post.id, user_id: current_user.id)
       render :blurb
     end
+
+    def clear_vote
+      delete_vote
+      render :blurb
+    end
+
 
     private
 
@@ -80,6 +88,13 @@ module Api
 
     def current_post
       Post.includes(:subs).find(params[:id])
+    end
+
+    def delete_vote
+      @post = current_post
+      prior_vote = current_user.votes.where(votable_type: 'Post', votable_id: @post.id);
+
+      Vote.destroy(prior_vote) if !prior_vote.empty?
     end
 
     def ensure_sub

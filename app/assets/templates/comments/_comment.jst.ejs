@@ -1,7 +1,7 @@
 <div class="vote_container clearfix">
 <form data-vote="1" data-commentid="<%= comment.id %>">
   <% if(previousVote && previousVote > 0){ %>
-   <button disabled class="bolded orange">^</button>
+   <button class="bolded orange">^</button>
   <% } else { %>
    <button>^</button>
   <% }; %>
@@ -9,7 +9,7 @@
 <p><%= comment.get("score") %></p>
 <form data-vote="-1" data-commentid="<%= comment.id %>">
   <% if(previousVote && previousVote < 0){ %>
-   <button disabled class="bolded blue">v</button>
+   <button class="bolded blue">v</button>
   <% } else { %>
    <button>v</button>
   <% }; %>

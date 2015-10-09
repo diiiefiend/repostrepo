@@ -10,6 +10,10 @@ Discoverit.Views.CommentShow = Backbone.CompositeView.extend({
     this.displayPost = options.displayPost;
     this.post = options.post;
 
+    if(Discoverit.currentUser){
+      this.previousVote = Discoverit.currentUser.getVote("Comment" + this.model.id);
+    };
+
     // this.listenTo(this.model, "change", this.render);
   },
 
@@ -21,33 +25,48 @@ Discoverit.Views.CommentShow = Backbone.CompositeView.extend({
     var model = this.model;
 
     var url = "api/posts/"+ model.post().id +"/comments/"+ model.id;
-    (vote > 0) ? url += "/upvote" : url += "/downvote";
 
-    if(this.model.id === commentId){
+    if($(e.currentTarget).find("button").hasClass("bolded")){
+      url += "/clear_vote";
+
       $.ajax({
         url: url,
         type: "POST",
         dataType: "json",
         success: function (data){
           model.set(model.parse(data));
-          Discoverit.currentUser.votes["Comment" + model.id] = vote;
+          delete Discoverit.currentUser.votes["Comment" + model.id];
           this.render({rerender: true});
         }.bind(this),
         error: function (data){
           options && options.error && options.error(model, data, options);
         }
       });
+    } else {
+      (vote > 0) ? url += "/upvote" : url += "/downvote";
+
+      if(this.model.id === commentId){
+        $.ajax({
+          url: url,
+          type: "POST",
+          dataType: "json",
+          success: function (data){
+            model.set(model.parse(data));
+            Discoverit.currentUser.votes["Comment" + model.id] = vote;
+            this.render({rerender: true});
+          }.bind(this),
+          error: function (data){
+            options && options.error && options.error(model, data, options);
+          }
+        });
+      };
     };
   },
 
   render: function (options){
-    var previousVote;
-    if(Discoverit.currentUser){
-      previousVote = Discoverit.currentUser.getVote("Comment" + this.model.id);
-    } else {
-      previousVote = null;
-    };
-    var template = this.template({comment: this.model, displayPost: this.displayPost, post: this.post, previousVote: previousVote});
+    this.previousVote = Discoverit.currentUser.getVote("Comment" + this.model.id);
+
+    var template = this.template({comment: this.model, displayPost: this.displayPost, post: this.post, previousVote: this.previousVote});
 
     if(options && options.rerender){
       $childComments = this.$el.find("[class^=commentLoop]").eq(0).html();
