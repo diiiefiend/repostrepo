@@ -6,6 +6,9 @@
       <% if(!sidebar){ %>
         : <%= sub.escape("description") %>
       <% }; %>
+      <% if(Discoverit.currentUser.id === sub.mod().id){ %>
+         (<a href="#subs/<%= sub.id %>/edit">edit</a>)
+      <% }; %>
     </li>
   <% }); %>
 </ul>

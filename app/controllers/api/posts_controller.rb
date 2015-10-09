@@ -63,13 +63,13 @@ module Api
     def upvote
       @post = current_post
       Vote.create!(value: 1, votable_type: "Post", votable_id: @post.id)
-      redirect_to sub_url(@post.sub_ids.first)
+      render :blurb
     end
 
     def downvote
       @post = current_post
       Vote.create!(value: -1, votable_type: "Post", votable_id: @post.id)
-      redirect_to sub_url(@post.sub_ids.first)
+      render :blurb
     end
 
     private
@@ -79,7 +79,7 @@ module Api
     end
 
     def current_post
-      Post.find(params[:id])
+      Post.includes(:subs).find(params[:id])
     end
 
     def ensure_sub

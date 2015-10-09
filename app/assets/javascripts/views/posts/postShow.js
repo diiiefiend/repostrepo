@@ -4,18 +4,12 @@ Discoverit.Views.PostShow = Backbone.CompositeView.extend({
   initialize: function (){
     //model: post
     this.listenTo(this.model, "sync", this.render);
-    this.listenTo(this.model, "change", this.displayPost);
   },
 
 
   displayPost: function (){
-    var template = this.template({post: this.model});
-    this.$el.html(template);
-
     var postView = new Discoverit.Views.PostView({model: this.model, fp: false});
     this.addSubview("ul.post", postView, false, {render: true});
-
-    return this;
   },
 
   addCommentsToView: function (){
@@ -31,6 +25,9 @@ Discoverit.Views.PostShow = Backbone.CompositeView.extend({
   },
 
   render: function (){
+    var template = this.template({post: this.model});
+    this.$el.html(template);
+
     this.displayPost();
     this.addCommentsToView();
     return this;

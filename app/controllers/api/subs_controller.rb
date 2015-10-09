@@ -5,7 +5,7 @@ module Api
     before_action :ensure_moderator, only: [:edit, :update, :destroy]
 
     def index
-      @subs = Sub.all.order(last_activity_stamp: :desc)
+      @subs = Sub.all.order(last_activity_stamp: :desc).includes(:mod)
       render :index
     end
 
