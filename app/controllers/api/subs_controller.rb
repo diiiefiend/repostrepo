@@ -2,32 +2,21 @@ module Api
   class SubsController < ApplicationController
     wrap_parameters false
 
-    before_action :ensure_moderator, only: [:edit, :update, :destroy]
+    before_action :ensure_moderator, only: [:update, :destroy]
 
     def index
       @subs = Sub.all.order(last_activity_stamp: :desc).includes(:mod)
       render :index
     end
 
-    def new
-      @sub = Sub.new
-      render :new
-    end
-
     def create
       @sub = current_user.modded_subs.new(sub_params)
 
       if @sub.save
-        redirect_to subs_url
+        render json: @sub
       else
-        flash.now[:errors] = @sub.errors.full_messages
-        render :new
+        render json: @cocktail.errors.full_messages, status: :unprocessable_entity
       end
-    end
-
-    def edit
-      @sub = current_sub
-      render :edit
     end
 
     def update
@@ -48,7 +37,7 @@ module Api
 
     def destroy
       current_sub.delete
-      redirect_to subs_url
+      render json: {}
     end
 
     private

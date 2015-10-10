@@ -14,21 +14,27 @@ Discoverit.Views.UserMenu = Backbone.View.extend({
     this.collection = new Discoverit.Collections.Users();
 
     this.listenTo(Discoverit.currentUser, "signIn signOut", this.render);
+    this.listenTo(Discoverit.currentUser, "signIn", this.signInCallback);
     this.render();
   },
 
-  showLogin: function (e){
-    e.preventDefault;
+  showLogin: function (e, callback){
+    if(e){
+      e.preventDefault();
+    };
+    if(callback){
+      this.callback = callback;
+    };
     $("#login").removeClass("hidden").addClass("modal");
   },
 
   showSignup: function (e){
-    e.preventDefault;
+    e.preventDefault();
     $("#signup").removeClass("hidden").addClass("modal");
   },
 
   hideModal: function (e){
-    e.preventDefault;
+    e.preventDefault();
     $("#login").removeClass("modal").addClass("hidden");
     $("#signup").removeClass("modal").addClass("hidden");
   },
@@ -42,7 +48,7 @@ Discoverit.Views.UserMenu = Backbone.View.extend({
   signOut: function (e){
     Discoverit.currentUser.signOut({
       success: function (){
-        Backbone.history.navigate("", {trigger: true});
+        // Backbone.history.navigate("", {trigger: true});
       }
     });
   },
@@ -78,6 +84,14 @@ Discoverit.Views.UserMenu = Backbone.View.extend({
         alert("Could not create user. Please try again.");
       }
     });
+  },
+
+  signInCallback: function (){
+    if(this.callback) {
+      this.callback();
+    } else {
+      Backbone.history.navigate("", { trigger: true });
+    }
   }
 
 });

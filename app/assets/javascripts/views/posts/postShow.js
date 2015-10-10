@@ -4,6 +4,7 @@ Discoverit.Views.PostShow = Backbone.CompositeView.extend({
   initialize: function (){
     //model: post
     this.listenTo(this.model, "sync", this.render);
+    this.listenTo(Discoverit.currentUser, "signIn signOut", this.render);
   },
 
 

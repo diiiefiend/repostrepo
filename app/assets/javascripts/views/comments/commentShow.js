@@ -13,6 +13,7 @@ Discoverit.Views.CommentShow = Backbone.CompositeView.extend(
       this.modelType = "Comment";
 
       // this.listenTo(this.model, "change", this.render);
+      this.listenTo(Discoverit.currentUser, "signIn signOut", this.render);
     },
 
     render: function (options){

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
     resource :session, only: [:create, :show, :destroy]
 
-    resources :subs
+    resources :subs, except: [:new, :edit]
 
     resources :posts do
       post :upvote, on: :member
