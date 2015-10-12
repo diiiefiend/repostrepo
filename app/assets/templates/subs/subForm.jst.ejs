@@ -1,8 +1,19 @@
-<h1>Create a Sub</h1>
+<h1><%= creating ? "Create" : "Edit" %> a Sub</h1>
 <form>
   <label>Title</label>
-  <input type="text" value="" name="sub[title]">
+  <input type="text" value="<%= sub.escape("title") %>" name="sub[title]">
   <label>Description</label>
-  <input type="text" value="" name="sub[description]">
-  <button>Create Sub</button>
+  <input type="text" value="<%= sub.escape("description") %>" name="sub[description]">
+  <button>Submit</button>
 </form>
+
+<% if(!creating){ %>
+  <hr>
+  <h1>Delete Sub</h1>
+  <p>If you are sure you want to delete the sub and all the posts and comments, click the button below.
+    Be sure though! They will be lost forever!</p>
+
+  <form>
+    <button class="delete-sub">Delete Sub</button>
+  </form>
+<% }; %>

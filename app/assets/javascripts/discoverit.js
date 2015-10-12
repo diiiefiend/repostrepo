@@ -4,7 +4,7 @@ window.Discoverit = {
   Views: {},
   Routers: {},
   Mixins: {},
-  
+
   initialize: function() {
     this.currentUser = new Discoverit.Models.CurrentUser();
     this.currentUser.fetch();

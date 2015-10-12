@@ -7,6 +7,7 @@ Discoverit.Routers.Router = Backbone.Router.extend({
 
     "subs/new" : "createSub",
     "subs/:id" : "showSub",
+    "subs/:id/edit" : "editSub",
 
     "users/:id" : "showUser"
   },
@@ -45,6 +46,15 @@ Discoverit.Routers.Router = Backbone.Router.extend({
     this._swapView(view, {wait: false});
   },
 
+  editSub: function (id){
+    var callback = this.editSub.bind(this);
+    if (!this._requireSignedIn(callback)) { return; } //if not signed in, return
+
+    var sub = this._subs.getOrFetch(id);
+    var view = new Discoverit.Views.SubForm({model: sub, collection: this._subs});
+    this._swapView(view);
+  },
+
   showUser: function (id){
     var user = this._users.getOrFetch(id);
     var view = new Discoverit.Views.UserShow({model: user});
@@ -55,7 +65,6 @@ Discoverit.Routers.Router = Backbone.Router.extend({
 
   _requireSignedIn: function(callback, wait){
     if (!Discoverit.currentUser.isSignedIn()) {
-      debugger
       callback = callback || this._goHome.bind(this);
       Discoverit.userMenu.showLogin(null, callback);
       return false;

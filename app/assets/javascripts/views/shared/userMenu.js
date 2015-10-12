@@ -37,6 +37,9 @@ Discoverit.Views.UserMenu = Backbone.View.extend({
     e.preventDefault();
     $("#login").removeClass("modal").addClass("hidden");
     $("#signup").removeClass("modal").addClass("hidden");
+    if(this.callback){      //if the modal was triggered from an _isSignedIn check, then closing it means they didn't sign in, so go to home
+      Backbone.history.navigate("", { trigger: true });
+    };
   },
 
   render: function (){
@@ -89,9 +92,9 @@ Discoverit.Views.UserMenu = Backbone.View.extend({
   signInCallback: function (){
     if(this.callback) {
       this.callback();
-    } else {
-      Backbone.history.navigate("", { trigger: true });
-    }
+    // } else {
+    //   Backbone.history.navigate("", { trigger: true });
+    };
   }
 
 });

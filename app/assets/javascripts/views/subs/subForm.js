@@ -2,7 +2,8 @@ Discoverit.Views.SubForm = Backbone.CompositeView.extend({
   template: JST['subs/subForm'],
 
   events: {
-    "submit form" : "submitForm"
+    "submit form" : "submitForm",
+    "click .delete-sub" : "deleteSub"
   },
 
   initialize: function (){
@@ -25,8 +26,17 @@ Discoverit.Views.SubForm = Backbone.CompositeView.extend({
     });
   },
 
+  deleteSub: function (e){
+    e.preventDefault();
+    this.model.destroy({
+      success: function (){
+        Backbone.history.navigate("", {trigger: true});
+      }
+    });
+  },
+
   render: function (){
-    var template = this.template({sub: this.model});
+    var template = this.template({sub: this.model, creating: this.model.isNew()});
     this.$el.html(template);
     return this;
   }

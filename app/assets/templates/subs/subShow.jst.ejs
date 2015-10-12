@@ -4,4 +4,10 @@
 </ul>
 <div class="right_bar">
 
+  <p><%= sub.get("description") %></p>
+
+  <h2>Mod</h2>
+  <ul>
+    <li><a href="#users/<%= sub.mod().id %>"><%= sub.mod().escape("username") %></a></li>
+  </ul>
 </div>
