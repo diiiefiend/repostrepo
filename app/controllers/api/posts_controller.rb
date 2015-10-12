@@ -23,6 +23,8 @@ module Api
       @post = current_user.posts.new(pars_for_post)
       if @post.save
         @post.sub_ids = sub_ids
+        @all_comments = @post.comments
+        @comment_hash = @post.comments_by_parent_id
         render :show
       else
         render json: @post.errors.full_messages, status: :unprocessable_entity
@@ -37,6 +39,8 @@ module Api
 
       if @post.update(pars_for_post)
         @post.sub_ids = sub_ids
+        @all_comments = @post.comments.includes(:author).order(created_at: :desc)
+        @comment_hash = @post.comments_by_parent_id
         render :show
       else
         render json: @post.errors.full_messages, status: :unprocessable_entity

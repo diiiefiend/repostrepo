@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       post :downvote, on: :member
       post :clear_vote, on: :member
       member do
-        resource :comments, except: [:new, :edit] do
+        resources :comments, except: [:new, :edit, :index] do
           post :upvote, on: :member
           post :downvote, on: :member
           post :clear_vote, on: :member

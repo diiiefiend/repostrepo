@@ -2,7 +2,8 @@ Discoverit.Views.PostForm = Backbone.CompositeView.extend({
   template: JST['posts/postForm'],
 
   events: {
-    "submit form" : "submitForm"
+    "submit form" : "submitForm",
+    "click .delete-post" : "deletePost"
   },
 
   initialize: function (options){
@@ -20,7 +21,6 @@ Discoverit.Views.PostForm = Backbone.CompositeView.extend({
     e.preventDefault();
     this.$el.find("button").prop("disabled", true);
     var formData = $(e.currentTarget).serializeJSON().post;
-    debugger
     this.model.save( formData, {
       success: function (){
         this.collection.add(this.model);
@@ -28,6 +28,15 @@ Discoverit.Views.PostForm = Backbone.CompositeView.extend({
       }.bind(this),
       error: function (){
         this.$el.find("button").prop("disabled", false);
+      }
+    });
+  },
+
+  deletePost: function (e){
+    e.preventDefault();
+    this.model.destroy({
+      success: function (){
+        Backbone.history.navigate("", {trigger: true});
       }
     });
   },
