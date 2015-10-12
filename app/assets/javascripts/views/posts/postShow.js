@@ -9,7 +9,7 @@ Discoverit.Views.PostShow = Backbone.CompositeView.extend({
 
 
   displayPost: function (){
-    var postView = new Discoverit.Views.PostView({model: this.model, fp: false});
+    var postView = new Discoverit.Views.PostView({model: this.model, fp: true});
     this.addSubview("ul.post", postView, false, {render: true});
   },
 

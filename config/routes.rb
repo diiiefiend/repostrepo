@@ -9,12 +9,12 @@ Rails.application.routes.draw do
 
     resources :subs, except: [:new, :edit]
 
-    resources :posts do
+    resources :posts, except: [:new, :edit] do
       post :upvote, on: :member
       post :downvote, on: :member
       post :clear_vote, on: :member
       member do
-        resources :comments, only: [:create, :update, :show, :destroy, :new] do
+        resource :comments, except: [:new, :edit] do
           post :upvote, on: :member
           post :downvote, on: :member
           post :clear_vote, on: :member

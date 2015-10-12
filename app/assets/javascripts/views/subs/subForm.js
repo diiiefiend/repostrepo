@@ -8,6 +8,7 @@ Discoverit.Views.SubForm = Backbone.CompositeView.extend({
 
   initialize: function (){
     //model: sub
+    //collection: subs
     this.listenTo(this.model, "sync", this.render);
   },
 

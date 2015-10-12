@@ -9,9 +9,11 @@ module Api
       render :index
     end
 
-    def new
-      @post = Post.new
-      render :new
+    def show
+      @post = current_post
+      @all_comments = @post.comments.includes(:author).order(created_at: :desc)
+      @comment_hash = @post.comments_by_parent_id
+      render :show
     end
 
     def create
@@ -21,28 +23,10 @@ module Api
       @post = current_user.posts.new(pars_for_post)
       if @post.save
         @post.sub_ids = sub_ids
-        redirect_to post_url(@post)
+        render :show
       else
-        flash.now[:errors] = @post.errors.full_messages
-        render :new
+        render json: @post.errors.full_messages, status: :unprocessable_entity
       end
-    end
-
-    def show
-      @post = current_post
-      @all_comments = @post.comments.includes(:author).order(created_at: :desc)
-      @comment_hash = @post.comments_by_parent_id
-      render :show
-    end
-
-    def destroy
-      to_destroy = current_post.delete
-      redirect_to subs_url
-    end
-
-    def edit
-      @post = current_post
-      render :edit
     end
 
     def update
@@ -53,11 +37,15 @@ module Api
 
       if @post.update(pars_for_post)
         @post.sub_ids = sub_ids
-        redirect_to post_url(@post)
+        render :show
       else
-        flash.now[:errors] = @post.errors.full_messages
-        render :edit
+        render json: @post.errors.full_messages, status: :unprocessable_entity
       end
+    end
+
+    def destroy
+      current_post.delete
+      render json: {}
     end
 
     def upvote
@@ -98,7 +86,7 @@ module Api
     end
 
     def ensure_sub
-      render :new if post_params[:sub_id].empty?
+      render status: :unprocessable_entity if post_params[:sub_id].empty?
     end
   end
 end

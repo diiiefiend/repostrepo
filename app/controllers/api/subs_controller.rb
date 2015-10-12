@@ -15,23 +15,21 @@ module Api
       if @sub.save
         render json: @sub
       else
-        render json: @cocktail.errors.full_messages, status: :unprocessable_entity
+        render json: @sub.errors.full_messages, status: :unprocessable_entity
       end
     end
 
     def update
       @sub = current_sub
       if @sub.update(sub_params)
-        redirect_to sub_url(@sub)
+        render json: @sub
       else
-        flash.now[:errors] = @sub.errors.full_messages
-        render :edit
+        render json: @sub.errors.full_messages, status: :unprocessable_entity
       end
     end
 
     def show
       @sub = current_sub
-
       render :show
     end
 
@@ -47,7 +45,7 @@ module Api
     end
 
     def ensure_moderator
-      redirect_to subs_url unless current_sub.mod == current_user
+      render status: :unprocessable_entity unless current_sub.mod == current_user
     end
 
     def current_sub

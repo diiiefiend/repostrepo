@@ -2,8 +2,9 @@ Discoverit.Routers.Router = Backbone.Router.extend({
   routes: {
     "" : "frontpage",
 
-    "posts/new" : "createPost",
+    "posts/new/:subid" : "createPost",
     "posts/:id" : "showPost",
+    "posts/:id/edit" : "editPost",
 
     "subs/new" : "createSub",
     "subs/:id" : "showSub",
@@ -28,6 +29,26 @@ Discoverit.Routers.Router = Backbone.Router.extend({
   showPost: function (id){
     var post = this._posts.getOrFetch(id);
     var view = new Discoverit.Views.PostShow({model: post});
+    this._swapView(view);
+  },
+
+  createPost: function (subid){
+    var callback = this.createPost.bind(this);
+    if (!this._requireSignedIn(callback)) { return; } //if not signed in, return
+
+    var post = new Discoverit.Models.Post();
+    this._subs.fetch();
+    var view = new Discoverit.Views.PostForm({model: post, collection: this._posts, subs: this._subs, subid: subid});
+    this._swapView(view);
+  },
+
+  editPost: function (id){
+    var callback = this.editPost.bind(this);
+    if (!this._requireSignedIn(callback)) { return; } //if not signed in, return
+
+    var post = this._posts.getOrFetch(id);
+    this._subs.fetch();
+    var view = new Discoverit.Views.PostForm({model: post, collection: this._posts, subs: this._subs});
     this._swapView(view);
   },
 

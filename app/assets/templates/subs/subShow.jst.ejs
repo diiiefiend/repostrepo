@@ -1,13 +1,20 @@
-<h1><%= sub.get("title") %></h1>
-<ul class="votable clearfix posts">
-
-</ul>
 <div class="right_bar">
 
-  <p><%= sub.get("description") %></p>
+  <p><strong><a href="#posts/new/<%= sub.id %>">Submit a Post!</a></strong></p>
+  <hr>
 
-  <h2>Mod</h2>
+  <p><strong><%= sub.escape("title") %></strong>: <%= sub.escape("description") %></p>
+
+  <h3>Mod</h3>
   <ul>
     <li><a href="#users/<%= sub.mod().id %>"><%= sub.mod().escape("username") %></a></li>
   </ul>
+
+  <% if(sub.mod().id === Discoverit.currentUser.id){ %>
+    <p><strong><a href="#subs/<%= sub.id %>/edit">Edit sub</a></strong></p>
+  <% }; %>
 </div>
+<h1><%= sub.escape("title") %></h1>
+<ul class="votable clearfix posts">
+
+</ul>

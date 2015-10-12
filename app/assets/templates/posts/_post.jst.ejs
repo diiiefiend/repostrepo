@@ -18,7 +18,7 @@
   </div>
   <p><a href="#posts/<%= post.id %>"><%= post.escape("title") %></a>
   <% if(Discoverit.currentUser.id === post.author().id){ %>
-     - <a href="javascript:void(0);">edit</a>
+     - <a href="#posts/<%= post.id %>/edit">edit</a>
   <% }; %>
   </p>
   <p>by <a href="#users/<%= post.author().id %>"><%= post.author().escape("username") %></a> @ <%= post.escape("created_at") %>

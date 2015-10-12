@@ -1,0 +1,33 @@
+<h1><%= creating ? "Create" : "Edit" %> a Post</h1>
+<form>
+<label for="title">Title*</label>
+<input type="text" name="post[title]" id="title" value="<%= post.escape("title") %>">
+
+<label for="url">URL</label>
+<input type="text" name="post[url]" id="url" value="<%= post.escape("url") %>">
+
+<label for="content">Content</label>
+<textarea name="post[content]" id="content"><%= post.escape("content") %></textarea>
+
+<label for="sub">Sub(s)*</label>
+  <% subs.each( function (sub){ %>
+    <input type="checkbox" name="post[sub_id][]" id="sub_id_<%= sub.id %>" value="<%= sub.id %>"
+    <% if((subid && sub.id === subid)|| _.indexOf(post.subs().pluck("id"), sub.id) !== -1){ %>
+      checked
+    <% }; %>
+    >
+    <label for="sub_id_<%= sub.id %>"><%= sub.escape("title") %></label>
+  <% }); %>
+
+<br>
+<input type="submit" value="Submit">
+<input type="reset" value="Reset">
+</form>
+
+<% if(!creating){ %>
+<hr>
+
+<h1>Delete Post</h1>
+<p>Make sure you want to delete you post, as it and all its comments will be deleted forever!</p>
+<input type="submit" class="delete-post" value="Delete Post">
+<% } %>
