@@ -21,7 +21,7 @@
      - <a href="#posts/<%= post.id %>/edit">edit</a>
   <% }; %>
   </p>
-  <p>by <a href="#users/<%= post.author().id %>"><%= post.author().escape("username") %></a> @ <%= post.escape("created_at") %>
+  <p class="subtext">by <a href="#users/<%= post.author().id %>"><%= post.author().escape("username") %></a> @ <%= post.escape("created_at") %>
     <% if(fp){ %>
       in
       <% post.subs().each( function (sub){ %>

@@ -1,16 +1,14 @@
 module Api
   class CommentsController < ApplicationController
-
-    def new
-      @comment = Comment.new
-      render :new
-    end
+    wrap_parameters false
 
     def create
       @comment = current_user.comments.new(comment_params)
-      flash[:errors] = @comment.errors.full_messages unless @comment.save
-
-      redirect_to post_url(@comment.post_id)
+      if @comment.save
+        render :show
+      else
+        render json: @comment.errors.full_messages, status: :unprocessable_entity
+      end
     end
 
     def show

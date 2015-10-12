@@ -26,4 +26,11 @@
   :</h5>
 <p><%= comment.escape("content") %></p>
 
-<p class="reply_link"><a href="#comments/<%= comment.id %>/new">reply</a></p>
+<% if(Discoverit.currentUser.isSignedIn()){  %>
+  <p class="reply_link"><a class="reply-comment-link" href="javascript:void(0);">reply</a>
+  <% if(comment.author().id === Discoverit.currentUser.id){ %>
+    - <a class="edit-comment-link" href="javascript:void(0);">edit</a>
+    - <a class="delete-comment-link" href="javascript:void(0);">delete</a>
+  <% }; %>
+  </p>
+<% }; %>

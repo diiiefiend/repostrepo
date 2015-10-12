@@ -131,7 +131,7 @@ body{
 /* post items stuff */
 
 .votable .reply_link,
-ul.votable li p:last-child{
+.votable p.subtext{
   clear: left;
   display: block;
   font-size: 12px;
