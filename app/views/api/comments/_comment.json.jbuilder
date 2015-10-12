@@ -1,4 +1,4 @@
-json.(comment, :id, :content, :post_id, :parent_comment_id)
+json.(comment, :id, :content, :post_id, :parent_comment_id, :deleted)
 json.created_at comment.created_at.to_formatted_s(:long_ordinal)
 
 json.score comment.score

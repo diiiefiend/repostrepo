@@ -1,20 +1,22 @@
-<div class="vote_container clearfix">
-<form data-vote="1" data-commentid="<%= comment.id %>">
-  <% if(previousVote && previousVote > 0){ %>
-   <button class="bolded orange">^</button>
-  <% } else { %>
-   <button>^</button>
-  <% }; %>
-</form>
-<p><%= comment.get("score") %></p>
-<form data-vote="-1" data-commentid="<%= comment.id %>">
-  <% if(previousVote && previousVote < 0){ %>
-   <button class="bolded blue">v</button>
-  <% } else { %>
-   <button>v</button>
-  <% }; %>
-</form>
-</div>
+<% if(comment.get("deleted") == false){ %>
+  <div class="vote_container clearfix">
+  <form data-vote="1" data-commentid="<%= comment.id %>">
+    <% if(previousVote && previousVote > 0){ %>
+     <button class="bolded orange">^</button>
+    <% } else { %>
+     <button>^</button>
+    <% }; %>
+  </form>
+  <p><%= comment.get("score") %></p>
+  <form data-vote="-1" data-commentid="<%= comment.id %>">
+    <% if(previousVote && previousVote < 0){ %>
+     <button class="bolded blue">v</button>
+    <% } else { %>
+     <button>v</button>
+    <% }; %>
+  </form>
+  </div>
+<% }; %>
 
 <h5><a href="#users/<%= comment.author().id %>"><%= comment.author().escape("username") %></a> @ <%= comment.get("created_at") %>
   <% if(displayPost){ %>
@@ -26,11 +28,13 @@
   :</h5>
 <p><%= comment.escape("content") %></p>
 
-<% if(Discoverit.currentUser.isSignedIn()){  %>
-  <p class="reply_link"><a class="reply-comment-link" href="javascript:void(0);">reply</a>
+<% if(Discoverit.currentUser.isSignedIn() && comment.get("deleted") === false){  %>
+  <p class="reply_link" data-commentid ="<%= comment.id %>">
+  <a class="reply-comment-link" href="javascript:void(0);">reply</a>
   <% if(comment.author().id === Discoverit.currentUser.id){ %>
     - <a class="edit-comment-link" href="javascript:void(0);">edit</a>
     - <a class="delete-comment-link" href="javascript:void(0);">delete</a>
   <% }; %>
   </p>
+  <div class="comment-reply-area-<%= comment.id %>"></div>
 <% }; %>

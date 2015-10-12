@@ -16,6 +16,26 @@ module Api
       render :show
     end
 
+    def update
+      @comment = current_comment
+      if @comment.update(comment_params)
+        render :show
+      else
+        render json: @comment.errors.full_messages, status: :unprocessable_entity
+      end
+    end
+
+    def destroy
+      @comment = current_comment
+      @comment.content = "[deleted]"
+      @comment.deleted = true
+      if @comment.save
+        render :show
+      else
+        render json: @comment.errors.full_messages, status: :unprocessable_entity
+      end
+    end
+
     def upvote
       @comment = current_comment
       delete_vote

@@ -2,7 +2,8 @@ Discoverit.Views.CommentForm = Backbone.CompositeView.extend({
   template: JST['comments/commentForm'],
 
   events: {
-    "submit form" : "submitForm"
+    "submit form" : "submitForm",
+    "click .cancel-reply" : "unattachForm"
   },
 
   initialize: function (options){
@@ -26,13 +27,25 @@ Discoverit.Views.CommentForm = Backbone.CompositeView.extend({
         this.collection.add(this.model);
         this.collection.trigger("newComment");
         $(e.currentTarget).find("textarea").val("");
-        this.model.clear();
-        $(e.currentTarget).find("button").prop("disabled", false);
+        if(this.parentCommentId){
+          this.unattachForm();
+        } else{
+          this.model.clear();
+          $(e.currentTarget).find("button").prop("disabled", false);
+        };
       }.bind(this),
       error: function (){
         $(e.currentTarget).find("button").prop("disabled", false);
       }
     });
+  },
+
+  unattachForm: function (e){
+    if(e){
+      e.preventDefault();
+    };
+    this.remove();
+    this.collection.trigger("cancelReply");
   },
 
   render: function (){
