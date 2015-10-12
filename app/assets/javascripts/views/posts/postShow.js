@@ -29,7 +29,8 @@ Discoverit.Views.PostShow = Backbone.CompositeView.extend({
   rerenderComments: function (){
     var lastComment = this.model.comments().at(this.model.comments().length-1);
     var commentShow = new Discoverit.Views.CommentShow({model: lastComment, displayPost: false, post: this.model});
-    this.addSubview("#comment-area", commentShow, true, {render: true});
+    var parentCommentId = lastComment.get("parent_comment_id");
+    this.addSubview(".commentLoop-"+parentCommentId, commentShow, true, {render: true});
   },
 
   render: function (){

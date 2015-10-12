@@ -17,7 +17,7 @@ Discoverit.Views.CommentShow = Backbone.CompositeView.extend(
       this.collection = this.post.comments();
       this.modelType = "Comment";
 
-      this.listenTo(this.model, "destroy", this.rerender);
+      this.listenTo(this.model, "change", this.rerender);
       this.listenTo(this.collection, "cancelReply", this.reenableReply);
       this.listenTo(Discoverit.currentUser, "signIn signOut", this.render);
     },
@@ -46,7 +46,13 @@ Discoverit.Views.CommentShow = Backbone.CompositeView.extend(
 
     deleteComment: function (e){
       e.preventDefault();
-      this.model.destroy();
+      if($(e.currentTarget).parent().data("commentid") === this.model.id){
+        this.model.destroy({
+          success: function (model, res){
+            this.model.set(res, {parse: true});
+          }.bind(this)
+        });
+      };
     },
 
     render: function (options){
