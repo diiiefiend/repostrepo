@@ -20,11 +20,11 @@ Discoverit.Views.UserForm = Backbone.CompositeView.extend({
       delete formData["old_pword"];
       delete formData["new_pword"];
     };
-    debugger
     this.model.save( formData, {
       success: function (){
-        alert("Successfully updated!");
+        // alert("Successfully updated!");
         this.$el.find("input[type='submit']").prop("disabled", false);
+        Backbone.history.navigate("#users/"+Discoverit.currentUser.id);
       }.bind(this),
       error: function (){
         this.$el.find("input[type='submit']").prop("disabled", false);

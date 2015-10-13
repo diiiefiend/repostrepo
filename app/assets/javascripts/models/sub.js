@@ -28,6 +28,14 @@ Discoverit.Models.Sub = Backbone.Model.extend({
       this.mod().set(res.mod);
       delete res.mod;
     }
+    if(res._page){
+      this._page = res._page;
+      delete res._page;
+    };
+    if(res._total_pages){
+      this._total_pages = res._total_pages;
+      delete res._total_pages;
+    };
     return res;
   }
 });

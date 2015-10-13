@@ -30,6 +30,7 @@ module Api
 
     def show
       @sub = current_sub
+      @posts = @sub.posts.page(params[:page])
       render :show
     end
 
@@ -49,7 +50,7 @@ module Api
     end
 
     def current_sub
-      Sub.includes(:posts).find(params[:id])
+      Sub.find(params[:id])
     end
   end
 end

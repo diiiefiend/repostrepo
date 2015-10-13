@@ -218,6 +218,13 @@ ul.comments li{
   background: #D1D2CC;
 }
 
+.page-nav .next-page{
+  float: left;
+}
+.page-nav .prev-page{
+  float: right;
+}
+
 /* profile stuff */
 
 .prof-pic{

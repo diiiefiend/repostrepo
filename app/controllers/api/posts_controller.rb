@@ -5,7 +5,7 @@ module Api
     before_action :ensure_sub, only: :create
 
     def index
-      @posts = Post.all.order(last_activity_stamp: :desc).includes(:author, :votes, :subs)         #this is the front page
+      @posts = Post.all.order(last_activity_stamp: :desc).includes(:author, :votes, :subs).page(params[:page])         #this is the front page
       render :index
     end
 
