@@ -1,6 +1,11 @@
 #Discoverit
 Ariel Hou, Aug-Oct 2015
 
+#Live Site
+[http://discoverit.arielity.net][link]
+
+[link]: http://discoverit.arielity.net
+
 # About
 Discoverit is an imitation Reddit built on Rails and Backbone. Features:
 
