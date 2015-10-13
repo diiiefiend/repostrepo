@@ -5,7 +5,7 @@ Discoverit.Views.PostShow = Backbone.CompositeView.extend({
     //model: post
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(Discoverit.currentUser, "signIn signOut", this.render);
-    this.listenTo(this.model.comments(), "newComment", this.rerenderComments);
+    this.listenTo(this.model.comments(), "newComment", this.renderLastComment);
   },
 
 
@@ -26,7 +26,7 @@ Discoverit.Views.PostShow = Backbone.CompositeView.extend({
     }.bind(this));
   },
 
-  rerenderComments: function (){
+  renderLastComment: function (){
     var lastComment = this.model.comments().at(this.model.comments().length-1);
     var commentShow = new Discoverit.Views.CommentShow({model: lastComment, displayPost: false, post: this.model});
     var parentCommentId = lastComment.get("parent_comment_id");

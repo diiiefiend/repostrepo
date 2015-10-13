@@ -14,7 +14,7 @@ Discoverit.Views.SubForm = Backbone.CompositeView.extend({
 
   submitForm: function (e){
     e.preventDefault();
-    this.$el.find("button").prop("disabled", true);
+    this.$el.find("input[type='submit']").prop("disabled", true);
     var formData = $(e.currentTarget).serializeJSON().sub;
     this.model.save( formData, {
       success: function (){
@@ -22,7 +22,7 @@ Discoverit.Views.SubForm = Backbone.CompositeView.extend({
         Backbone.history.navigate("#subs/" + this.model.id, {trigger: true});
       }.bind(this),
       error: function (){
-        this.$el.find("button").prop("disabled", false);
+        this.$el.find("input[type='submit']").prop("disabled", false);
       }.bind(this)
     });
   },

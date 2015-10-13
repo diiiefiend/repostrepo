@@ -9,6 +9,7 @@ Discoverit.Views.CommentForm = Backbone.CompositeView.extend({
   initialize: function (options){
     //model: comment
     //collection: comments
+    this.isNew = this.model.isNew();
     this.parentCommentId = options.parentCommentId;
     this.listenTo(this.model, "sync", this.render);
   },
@@ -16,7 +17,7 @@ Discoverit.Views.CommentForm = Backbone.CompositeView.extend({
   submitForm: function (e){
     e.preventDefault();
 
-    $(e.currentTarget).find("button").prop("disabled", true);
+    $(e.currentTarget).find("input[type='submit']").prop("disabled", true);
 
     var formData = $(e.currentTarget).serializeJSON().comment;
     formData["post_id"] = this.model.post().id;
@@ -25,17 +26,21 @@ Discoverit.Views.CommentForm = Backbone.CompositeView.extend({
     this.model.save( formData, {
       success: function (){
         this.collection.add(this.model);
-        this.collection.trigger("newComment");
-        $(e.currentTarget).find("textarea").val("");
-        if(this.parentCommentId){
+        if(this.isNew){
+          this.collection.trigger("newComment");
+        } else {
+          this.collection.trigger("changedComment");
+        };
+        if(!this.isNew || this.parentCommentId){
           this.unattachForm();
         } else{
+          $(e.currentTarget).find("textarea").val("");
           this.model.clear();
-          $(e.currentTarget).find("button").prop("disabled", false);
+          $(e.currentTarget).find("input[type='submit']").prop("disabled", false);
         };
       }.bind(this),
       error: function (){
-        $(e.currentTarget).find("button").prop("disabled", false);
+        $(e.currentTarget).find("input[type='submit']").prop("disabled", false);
       }
     });
   },
@@ -45,11 +50,15 @@ Discoverit.Views.CommentForm = Backbone.CompositeView.extend({
       e.preventDefault();
     };
     this.remove();
-    this.collection.trigger("cancelReply");
+    if(this.isNew){
+      this.collection.trigger("cancelReply");
+    } else {
+      this.collection.trigger("cancelEdit");
+    };
   },
 
   render: function (){
-    var template = this.template({comment: this.model, parentCommentId: this.parentCommentId});
+    var template = this.template({comment: this.model, parentCommentId: this.parentCommentId, creating: this.isNew});
     this.$el.html(template);
     return this;
   }

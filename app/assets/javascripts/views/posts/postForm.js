@@ -19,7 +19,7 @@ Discoverit.Views.PostForm = Backbone.CompositeView.extend({
 
   submitForm: function (e){
     e.preventDefault();
-    this.$el.find("button").prop("disabled", true);
+    this.$el.find("input[type='submit']").prop("disabled", true);
     var formData = $(e.currentTarget).serializeJSON().post;
     this.model.save( formData, {
       success: function (){
@@ -27,7 +27,7 @@ Discoverit.Views.PostForm = Backbone.CompositeView.extend({
         Backbone.history.navigate("#posts/" + this.model.id, {trigger: true});
       }.bind(this),
       error: function (){
-        this.$el.find("button").prop("disabled", false);
+        this.$el.find("input[type='submit']").prop("disabled", false);
       }
     });
   },
