@@ -30,7 +30,14 @@ Discoverit.Views.PostShow = Backbone.CompositeView.extend({
     var lastComment = this.model.comments().at(this.model.comments().length-1);
     var commentShow = new Discoverit.Views.CommentShow({model: lastComment, displayPost: false, post: this.model});
     var parentCommentId = lastComment.get("parent_comment_id");
-    this.addSubview(".commentLoop-"+parentCommentId, commentShow, true, {render: true});
+    if(parentCommentId){
+      var $loopEl = this.$el.find(".commentLoop-"+parentCommentId);
+      $loopEl.prepend("<ul class='votable-"+ parentCommentId +"'>");
+      var el = "ul.votable-"+parentCommentId;
+    } else {
+      var el = "#comment-area";
+    };
+    this.addSubview(el, commentShow, true, {render: true});
   },
 
   render: function (){

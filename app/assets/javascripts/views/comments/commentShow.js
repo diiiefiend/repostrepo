@@ -14,17 +14,19 @@ Discoverit.Views.CommentShow = Backbone.CompositeView.extend(
       //collection: comments (set below)
       this.displayPost = options.displayPost;
       this.post = options.post;
-      this.collection = this.post.comments();
+      if(!this.displayPost){
+        this.collection = this.post.comments();
+      };
       this.modelType = "Comment";
 
-      this.listenTo(this.model, "changedComment", this.rerender);
+      this.listenTo(this.model, "change", this.rerender);
       this.listenTo(this.collection, "cancelReply", this.reenableReply);
       this.listenTo(this.collection, "cancelEdit", this.displayComment);
       this.listenTo(Discoverit.currentUser, "signIn signOut", this.render);
     },
 
     rerender: function (){
-      debugger
+      // debugger
       this.render({rerender: true});
     },
 
@@ -62,7 +64,6 @@ Discoverit.Views.CommentShow = Backbone.CompositeView.extend(
         this.model.destroy({
           success: function (model, res){
             this.model.set(res, {parse: true});
-            this.collection.trigger("changedComment");
           }.bind(this)
         });
       };

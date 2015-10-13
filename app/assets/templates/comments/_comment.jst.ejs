@@ -31,7 +31,7 @@
 <p><%= comment.escape("content") %></p>
 </div>
 
-<% if(Discoverit.currentUser.isSignedIn() && comment.get("deleted") === false){  %>
+<% if(Discoverit.currentUser.isSignedIn() && comment.get("deleted") === false && !displayPost){  %>
   <p class="reply_link" data-commentid ="<%= comment.id %>">
   <a class="reply-comment-link" href="javascript:void(0);">reply</a>
   <% if(comment.author().id === Discoverit.currentUser.id){ %>

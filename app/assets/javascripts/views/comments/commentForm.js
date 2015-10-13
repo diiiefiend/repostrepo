@@ -28,8 +28,6 @@ Discoverit.Views.CommentForm = Backbone.CompositeView.extend({
         this.collection.add(this.model);
         if(this.isNew){
           this.collection.trigger("newComment");
-        } else {
-          this.collection.trigger("changedComment");
         };
         if(!this.isNew || this.parentCommentId){
           this.unattachForm();
