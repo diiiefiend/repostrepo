@@ -16,11 +16,20 @@
     <% }; %>
    </form>
   </div>
-  <p>
+  <p class="post-title">
     <% if(post.escape("url")){ %>
-      <% var shortUrl = post.escape("url").replace("http://", ""); %>
+      <% var url = post.escape("url"); %>
+      <% var shortUrl = url.replace("http://", "").replace("https://", ""); %>
+      <% if(shortUrl.substring(0, 7) === 'i.imgur'){ %>
+        <% var x = url.lastIndexOf("."); %>
+        <% var imgPath = url.substring(0, x); %>
+        <% var imgExt = url.substring(x, url.length); %>
+          <a href="<%= url %>" target="_blank">
+            <img src="<%= imgPath %>s<%= imgExt %>" class="post-thumb" alt="<%= post.escape("title") %>">
+          </a>
+      <% }; %>
       <% var n = shortUrl.indexOf("/"); %>
-      <a href="<%= post.escape("url") %>" target="_blank"><%= post.escape("title") %></a> (<%= shortUrl.substring(0, n != -1 ? n : post.escape("url").length) %>)
+      <a href="<%= url %>" target="_blank"><%= post.escape("title") %></a> (<%= shortUrl.substring(0, n != -1 ? n : url.length) %>)
     <% } else { %>
       <a href="#posts/<%= post.id %>"><%= post.escape("title") %></a>
     <% }; %>
