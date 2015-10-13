@@ -49,11 +49,8 @@ Discoverit.Views.UserMenu = Backbone.View.extend({
   },
 
   signOut: function (e){
-    Discoverit.currentUser.signOut({
-      success: function (){
-        // Backbone.history.navigate("", {trigger: true});
-      }
-    });
+    e.preventDefault();
+    Discoverit.currentUser.signOut();
   },
 
   logIn: function (e){
@@ -92,8 +89,6 @@ Discoverit.Views.UserMenu = Backbone.View.extend({
   signInCallback: function (){
     if(this.callback) {
       this.callback();
-    // } else {
-    //   Backbone.history.navigate("", { trigger: true });
     };
   }
 

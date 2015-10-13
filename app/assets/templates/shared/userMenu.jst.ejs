@@ -1,5 +1,5 @@
 <% if(currentUser.isSignedIn()){%>
-  Logged in as <a href="#users/<%= currentUser.id %>"><%= currentUser.username() %></a> - <a href="javascript: void(0);" id="logout-link">Log out</a>
+  Logged in as <a href="#users/<%= currentUser.id %>"><%= currentUser.username() %></a> (<a href="#users/profile">edit profile</a>) - <a href="javascript: void(0);" id="logout-link">Log out</a>
 <% } else { %>
   <a class="login-link" href="javascript:void(0);">Log In</a> | <a class="signup-link" href="javascript:void(0);">Sign Up</a>
 

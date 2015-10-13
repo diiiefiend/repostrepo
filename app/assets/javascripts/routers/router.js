@@ -10,6 +10,7 @@ Discoverit.Routers.Router = Backbone.Router.extend({
     "subs/:id" : "showSub",
     "subs/:id/edit" : "editSub",
 
+    "users/profile" : "editProfile",
     "users/:id" : "showUser"
   },
 
@@ -80,6 +81,14 @@ Discoverit.Routers.Router = Backbone.Router.extend({
     var user = this._users.getOrFetch(id);
     var view = new Discoverit.Views.UserShow({model: user});
     this._swapView(view);
+  },
+
+  editProfile: function (){
+    var callback = this.editProfile.bind(this);
+    if (!this._requireSignedIn(callback)) { return; } //if not signed in, return
+
+    var view = new Discoverit.Views.UserForm({model: Discoverit.currentUser});
+    this._swapView(view, {wait: false});
   },
 
   // "private" methods

@@ -15,6 +15,7 @@ Discoverit.Views.PostForm = Backbone.CompositeView.extend({
     };
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.subs, "sync", this.render);
+    this.listenTo(Discoverit.currentUser, "signIn signOut", Discoverit.currentUser.goHome);
   },
 
   submitForm: function (e){

@@ -73,7 +73,7 @@ Discoverit.Models.CurrentUser = Discoverit.Models.User.extend({
       dataType: "json",
       success: function(data){
         model.set(model.parse(data));
-        options.success && options.success();
+        options && options.success && options.success();
       },
       error: function(){
         options.error && options.error();
@@ -89,9 +89,13 @@ Discoverit.Models.CurrentUser = Discoverit.Models.User.extend({
       dataType: "json",
       success: function (data){
         model.clear();
-        options.success && options.success();
+        options && options.success && options.success();
       }
     });
+  },
+
+  goHome: function (){
+    Backbone.history.navigate("", {trigger: true});
   },
 
   fireSessionEvent: function (){

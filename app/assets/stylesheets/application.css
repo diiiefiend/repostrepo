@@ -16,6 +16,7 @@
 *{
   margin: 0;
   padding: 0;
+  outline: 0;
 }
 
 body{
@@ -120,9 +121,7 @@ body{
 /* sidebar stuff */
 
 .right_bar{
-  position: absolute;
-  top: 20px;
-  right: 20px;
+  float: right;
   width: 25%;
   padding: 10px;
   background: white;
@@ -258,6 +257,11 @@ ul.strong li a:first-child{
   display: block;
   content: "";
 }
+.clearfix-left:after{
+  clear: left;
+  display: block;
+  content: "";
+}
 
 .bolded{
   font-weight: bold;
@@ -311,8 +315,23 @@ label{
   float: left;
   display: block;
   text-align: right;
-  width: 80px;
+  width: 15%;
   margin-right: 10px;
+  clear: left;
+}
+
+fieldset{
+  clear: left;
+  margin: 10px 0;
+  padding: 10px 0;
+  border: 1px solid #eee;
+}
+
+legend{
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: lowercase;
+  font-variant: small-caps;
 }
 
 input, textarea{
@@ -333,4 +352,8 @@ input[type="checkbox"] + label{
 input[type="checkbox"], input[type="submit"], input[type="reset"]{
   display: inline;
   width: auto;
+}
+
+input:disabled{
+  opacity: 0.5;
 }

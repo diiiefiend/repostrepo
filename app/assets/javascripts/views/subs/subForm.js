@@ -10,6 +10,7 @@ Discoverit.Views.SubForm = Backbone.CompositeView.extend({
     //model: sub
     //collection: subs
     this.listenTo(this.model, "sync", this.render);
+    this.listenTo(Discoverit.currentUser, "signIn signOut", Discoverit.currentUser.goHome);
   },
 
   submitForm: function (e){

@@ -1,0 +1,25 @@
+<h1>Update Profile</h1>
+
+<form>
+  <label for="username">Username</label>
+  <input type="text" id="username" name="user[username]" disabled value="<%= user.escape("username") %>">
+  <label for="email">Email</label>
+  <input type="text" id="email" name="user[email]" disabled value="<%= user.escape("email") %>">
+
+  <label for="location">Location</label>
+  <input type="text" id="location" name="user[location]" value="<%= user.escape("location") %>">
+
+  <label for="prof_img">Profile Image</label>
+  <input type="text" id="prof_img" name="user[prof_img]" disabled value="<%= user.escape("prof_img") %>">
+
+  <fieldset>
+    <legend>Change Password</legend>
+    <label for="old-pword">Old Password</label>
+    <input type="text" id="old-pword" name="user[old_pword]">
+
+    <label for="new-pword">New Password</label>
+    <input type="text" id="new-pword" name="user[new_pword]">
+  </fieldset>
+
+  <input type="submit" value="Update">
+</form>

@@ -7,6 +7,8 @@
 <% if(user.escape("location")){ %>
   <h3>Location: <%= user.escape("location")  %></h3>
 <% }; %>
+
+<h3>Member since: <%= user.escape("created_at") %></h3>
 <hr>
 <h3>Latest Posts</h3>
 <ul class="votable posts">
