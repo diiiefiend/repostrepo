@@ -26,7 +26,6 @@ Discoverit.Views.CommentShow = Backbone.CompositeView.extend(
     },
 
     rerender: function (){
-      // debugger
       this.render({rerender: true});
     },
 

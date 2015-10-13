@@ -16,7 +16,15 @@
     <% }; %>
    </form>
   </div>
-  <p><a href="#posts/<%= post.id %>"><%= post.escape("title") %></a>
+  <p>
+    <% if(post.escape("url")){ %>
+      <% var shortUrl = post.escape("url").replace("http://", ""); %>
+      <% var n = shortUrl.indexOf("/"); %>
+      <a href="<%= post.escape("url") %>" target="_blank"><%= post.escape("title") %></a> (<%= shortUrl.substring(0, n != -1 ? n : post.escape("url").length) %>)
+    <% } else { %>
+      <a href="#posts/<%= post.id %>"><%= post.escape("title") %></a>
+    <% }; %>
+
   <% if(Discoverit.currentUser.id === post.author().id){ %>
      - <a href="#posts/<%= post.id %>/edit">edit</a>
   <% }; %>

@@ -33,7 +33,7 @@ Discoverit.Views.CommentForm = Backbone.CompositeView.extend({
           this.unattachForm();
         } else{
           $(e.currentTarget).find("textarea").val("");
-          this.model.clear();
+          this.model = new Discoverit.Models.Comment([], {post: this.model.post()});
           $(e.currentTarget).find("input[type='submit']").prop("disabled", false);
         };
       }.bind(this),

@@ -18,7 +18,7 @@ class Post < ActiveRecord::Base
 
   def comments_by_parent_id
     comment_hash = Hash.new { |h, k| h[k] = [] }
-    self.comments.each do |comment|
+    self.comments.order(updated_at: :desc).each do |comment|
       comment_hash[comment.parent_comment_id] << comment
     end
 
