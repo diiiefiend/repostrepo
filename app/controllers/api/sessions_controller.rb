@@ -24,14 +24,17 @@ module Api
     end
 
     def update
-      form_params = session_params
-      form_params.delete(:id);
-      form_params.delete(:username);
-      form_params.delete(:created_at);
-      form_params.delete(:email);
-      if form_params[:new_pword] && form_params[:old_pword]     #start password change logic here
-
+      form_params = session_params.except(:old_pword, :new_pword)
+      form_params.delete(:id)
+      form_params.delete(:username)
+      form_params.delete(:created_at)
+      form_params.delete(:email)
+      if session_params[:new_pword] && session_params[:old_pword]     #start password change logic here
+        if current_user.is_password?(session_params[:old_pword])
+          form_params[:password] = session_params[:new_pword]
+        end
       end
+
 
       if current_user.update(form_params)
         render :show
@@ -48,7 +51,7 @@ module Api
     private
 
     def session_params
-      params.require(:user).permit(:id, :username, :email, :location, :prof_img, :created_at, :old_pword, :new_pword)
+      params.require(:user).permit(:id, :username, :email, :location, :prof_img, :created_at, :old_pword, :new_pword, :password)
     end
 
   end
