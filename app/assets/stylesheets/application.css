@@ -201,6 +201,10 @@ img.post-thumb{
   margin: 5px 0;
 }
 
+#post-body{
+  margin-left: 40px;
+}
+
 ul.comments{
   margin-left: 10px;
 }
@@ -348,17 +352,36 @@ input, textarea{
   border-bottom: 2px solid white;
   margin: 0 0 10px 0;
   display: block;
-  width: 200px;
+  width: 75%;
+  min-width: 200px;
 }
 
-input[type="checkbox"] + label{
+textarea{
+  height: 100px;
+}
+
+.subs-checkboxes{
+  width: calc(75% - 20px);
+  background: #e9eae4;
+  padding: 10px;
+  margin-left: calc(15% + 10px);
+}
+
+.subs-checkboxes label{
+  clear: none;
+  display: inline-block;
   float: none;
-  display: inline;
+  width: auto;
+}
+
+.submit-area{
+  margin: 10px 0 0 18%;
 }
 
 input[type="checkbox"], input[type="submit"], input[type="reset"]{
   display: inline;
   width: auto;
+  min-width: auto;
 }
 
 input:disabled{

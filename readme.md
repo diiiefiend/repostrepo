@@ -20,6 +20,8 @@ Discoverit is an imitation Reddit built on Rails and Backbone. Features:
 
 ### To Do
 - [ ] Allow subscribing to subs
+- [ ] Sorting posts by hotness as opposed to just newest
+- [ ] Messaging users
 - [ ] Pretty URLs
 - [ ] Allow users to set profile pics using paperclip
 - [ ] Search
