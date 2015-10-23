@@ -4,7 +4,10 @@
   <input type="text" id="title" value="<%= sub.escape("title") %>" name="sub[title]">
   <label for="description">Description</label>
   <input type="text" id="description" value="<%= sub.escape("description") %>" name="sub[description]">
-  <input type="submit" value="Submit">
+
+  <div class="submit-area">
+    <input type="submit" value="Submit">
+  </div>
 </form>
 
 <% if(!creating){ %>

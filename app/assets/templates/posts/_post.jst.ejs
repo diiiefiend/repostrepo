@@ -46,6 +46,6 @@
       <% }); %>
     <% }; %>
     ;
-    <a href="#posts/<%= post.id %>#comments"><%= post.get("comment_count") %> comments</a>
+    <a href="#posts/<%= post.id %>#comments"><%= post.get("comment_count") %> comment<%= post.get("comment_count") !== 1 ? "s" : "" %></a>
   </p>
 </li>
