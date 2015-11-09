@@ -1,6 +1,8 @@
 module Api
   class CommentsController < ApplicationController
     wrap_parameters false
+    before_action :ensure_logged_in, only: [:create, :update, :destroy]
+    before_action :ensure_author, only: [:update, :destroy]
 
     def create
       @comment = current_user.comments.new(comment_params)
@@ -69,6 +71,10 @@ module Api
       @comment = current_comment
       prior_vote = current_user.votes.where(votable_type: 'Comment', votable_id: @comment.id);
       Vote.destroy(prior_vote) if !prior_vote.empty?
+    end
+
+    def ensure_author
+      render status: :unprocessable_entity unless current_user.id == current_comment.user_id
     end
   end
 end

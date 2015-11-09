@@ -3,6 +3,8 @@ module Api
     wrap_parameters false
 
     before_action :ensure_sub, only: :create
+    before_action :ensure_logged_in, only: [:create, :update, :destroy]
+    before_action :ensure_author, only: [:update, :destroy]
 
     def index
       @posts = Post.all.order(last_activity_stamp: :desc).includes(:author, :votes, :subs).page(params[:page])         #this is the front page
@@ -91,6 +93,10 @@ module Api
 
     def ensure_sub
       render status: :unprocessable_entity if post_params[:sub_id].empty?
+    end
+
+    def ensure_author
+      render status: :unprocessable_entity unless current_user.id == current_post.user_id
     end
   end
 end

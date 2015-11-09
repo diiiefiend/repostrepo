@@ -2,6 +2,7 @@ module Api
   class SubsController < ApplicationController
     wrap_parameters false
 
+    before_action :ensure_logged_in, only: [:create, :update, :destroy]
     before_action :ensure_moderator, only: [:update, :destroy]
 
     def index
