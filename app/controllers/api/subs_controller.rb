@@ -3,7 +3,7 @@ module Api
     wrap_parameters false
 
     before_action :ensure_logged_in, only: [:create, :update, :destroy]
-    before_action :ensure_moderator, only: [:update, :destroy]
+    before_action :ensure_moderat:or, only: [:update, :destroy]
 
     def index
       @subs = Sub.all.order(last_activity_stamp: :desc).includes(:mod)
