@@ -13,6 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+$bg-color: #374552;               //2nd darkest
+$highlight-color: #F9E1C5;        //2nd lightest
+$body-color: #D1D2CC;             //lightest
+$head-color: #8E8E90;             //darkest
+
+$cont-color: #2E2926;
+$link-color: #404A4C;
+$field-bg-color: #e9eae4;
+$upvote-color: orange;
+$downvote-color: blue;
+
 *{
   margin: 0;
   padding: 0;
@@ -20,9 +32,9 @@
 }
 
 body{
-  background: #374552;
+  background: $bg-color;
   padding: 10px;
-  color: #2E2926;
+  color: $cont-color;
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
@@ -33,11 +45,11 @@ body{
 
 /* header stuff */
 #header{
-  background: #374552;
-  border-bottom: 5px solid #F9E1C5;
+  background: $bg-color;
+  border-bottom: 5px solid $highlight-color;
   margin-bottom: 5px;
   padding: 5px;
-  color: #8E8E90;
+  color: $head-color;
 }
 
 #header h1{
@@ -48,14 +60,14 @@ body{
 #header h1 a{
   font: 48px georgia, serif;
   letter-spacing: .1em;
-  color: #F9E1C5;
+  color: $highlight-color;
   margin-left: 20px;
 }
 #header h1 a em{
-  color: #D1D2CC;
+  color: $body-color;
 }
 #header h1 a:hover em{
-  color: #8E8E90;
+  color: $head-color;
 }
 #header h1 a:hover:after{
   content: "click for the front page!";
@@ -68,10 +80,10 @@ body{
   font-size: 12px;
 }
 #header a{
-  color: #8E8E90;
+  color: $head-color;
 }
 #header a:hover{
-  color: #F9E1C5;
+  color: $highlight-color;
 }
 
 /* modal */
@@ -110,7 +122,7 @@ body{
 
 /* cont stuff */
 #cont{
-  background: #D1D2CC;
+  background: $body-color;
   padding: 10px;
   font-size: 16px;
   margin-bottom: 5px;
@@ -124,7 +136,7 @@ body{
   float: right;
   width: 25%;
   padding: 10px;
-  background: white;
+  background: #fff;
 }
 
 /* post items stuff */
@@ -171,7 +183,7 @@ body{
   font-size: 10px;
 }
 .vote_container button:hover{
-  background: white;
+  background: #fff;
 }
 
 .votable .reply_link,
@@ -216,12 +228,12 @@ ul.comments li > ul.comments{
 }
 
 ul.comments li{
-  border-left: 2px dotted #F9E1C5;
+  border-left: 2px dotted $highlight-color;
   padding-left: 10px;
 }
 
 [class*="commentLoop-"]{
-  background: #D1D2CC;
+  background: $body-color;
 }
 
 .page-nav .next-page{
@@ -239,20 +251,20 @@ ul.comments li{
   right: 0;
   width: 40%;
   height: auto;
-  border: 5px solid white;
+  border: 5px solid #fff;
   transform: rotate(5deg);
 }
 
 /* footer stuff */
 #footer{
-  border-top: 5px solid #F9E1C5;
+  border-top: 5px solid $highlight-color;
 }
 #footer p{
   margin: 5px 0 0 0;
   padding: 10px;
   font-size: 10px;
-  background: #F9E1C5;
-  color: #8E8E90;
+  background: $highlight-color;
+  color: $head-color;
 }
 
 /* general use selectors */
@@ -281,21 +293,21 @@ ul.strong li a:first-child{
 }
 
 .orange{
-  color: orange;
+  color: $upvote-color;
 }
 
 .blue{
-  color: blue;
+  color: $downvote-color;
 }
 
 /* general tags */
 a{
   text-decoration: none;
-  color: #404A4C;
+  color: $link-color;
   font-style: italic;
 }
 a:hover{
-  color: white;
+  color: #fff;
 }
 
 h2, h3, h4{
@@ -348,10 +360,10 @@ legend{
 }
 
 input, textarea{
-  background: #e9eae4;
+  background: $field-bg-color;
   border: 0;
   padding: 2px;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid #fff;
   margin: 0 0 10px 0;
   display: block;
   width: 75%;
@@ -364,7 +376,7 @@ textarea{
 
 .subs-checkboxes{
   width: calc(75% - 20px);
-  background: #e9eae4;
+  background: $field-bg-color;
   padding: 10px;
   margin-left: calc(15% + 10px);
 }
