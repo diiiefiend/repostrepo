@@ -1,36 +1,69 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Discoverit</title>
-  <%= stylesheet_link_tag    'application', media: 'all'%>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Discoverit</title>
+    <%= stylesheet_link_tag    'application', media: 'all'%>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-<div id="container">
-<div id="header" class="clearfix">
-<h1><a href="/">Discover<em>it</em></a></h1>
-<p align="right">
-  
-</p>
-</div>
+    <div id="container">
+      <div id="header" class="clearfix">
+        <h1><a href="/">Discover<em>it</em></a></h1>
+        <p align="right">
 
-<div id="cont" class="clearfix">
-<% if flash[:errors] %>
-  <ul id="errors">
-    <% flash[:errors].each do |error| %>
-    <li><%= error %></li>
-    <% end %>
-  </ul>
-<% end %>
+        </p>
+      </div>
 
-<%= yield %>
-</div>
+      <div id="cont" class="clearfix">
+        <% if flash[:errors] %>
+          <ul id="errors">
+            <% flash[:errors].each do |error| %>
+            <li><%= error %></li>
+            <% end %>
+          </ul>
+        <% end %>
 
-<div id="footer">
-<p>Developed by <a href="http://arielity.net" target="_blank">Ariel Hou</a>, based off a skeleton project with <a href="https://github.com/aivensong" target="_blank">Aiven Song</a>. Inspired by <a href="http://reddit.com" target="_blank">Reddit</a>.</p>
-</div>
-</div>
-</body>
+        <%= yield %>
+      </div>
+
+      <div id="footer">
+        <p>Developed by <a href="http://arielity.net" target="_blank">Ariel Hou</a>. Inspired by <a href="http://reddit.com" target="_blank">Reddit</a>.</p>
+      </div>
+    </div>
+
+
+    <!-- let's mix up the color palette using colourlovers' api -->
+    <script type="text/javascript">
+      //have to use YQL to handle the crossdomain xml request
+      // var url = "http://www.colourlovers.com/api/palettes/random";
+      // var yqlBase = "http://query.yahooapis.com/v1/yql?q=";
+      // var request = yqlBase + encodeURIComponent('select * from xml where url="' + url + '"') + '&format=xml&callback=?';
+      //
+      // $.getJSON(request, function(data){
+      //   console.log(data.results[0]);
+      // });
+
+      var processColors = function (data){
+        var xmlDoc = $.parseXML(data);
+        var $xml = $(xmlDoc)
+        $title = $xml.find("title");
+        console.log($title);
+      };
+
+      $.ajax({
+        method: 'GET',
+        url: "clXMLParser.php", // returns xml
+        dataType: 'xml',
+        success: function(data) {
+          processColors(data);
+        },
+        error: function(err) {
+          console.log('err', err);
+        }
+      });
+
+    </script>
+  </body>
 </html>
