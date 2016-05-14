@@ -36,31 +36,22 @@
 
     <!-- let's mix up the color palette using colourlovers' api -->
     <script type="text/javascript">
-      //have to use YQL to handle the crossdomain xml request
-      // var url = "http://www.colourlovers.com/api/palettes/random";
-      // var yqlBase = "http://query.yahooapis.com/v1/yql?q=";
-      // var request = yqlBase + encodeURIComponent('select * from xml where url="' + url + '"') + '&format=xml&callback=?';
-      //
-      // $.getJSON(request, function(data){
-      //   console.log(data.results[0]);
-      // });
 
       var processColors = function (data){
-        var xmlDoc = $.parseXML(data);
-        var $xml = $(xmlDoc)
-        $title = $xml.find("title");
-        console.log($title);
+        //data comes back as an array with 1 object
+        var paletteObj = data[0];
+        paletteTitle = paletteObj.title;
+        paletteColors = paletteObj.colors;
+        console.log(paletteTitle);
+        console.log(paletteColors);
       };
 
       $.ajax({
         method: 'GET',
-        url: "clXMLParser.php", // returns xml
-        dataType: 'xml',
+        url: "http://www.colourlovers.com/api/palettes/random?format=json&jsonCallback=processColors",
+        dataType: 'jsonp',
         success: function(data) {
-          processColors(data);
-        },
-        error: function(err) {
-          console.log('err', err);
+          console.log(data);
         }
       });
 
