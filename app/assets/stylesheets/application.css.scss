@@ -50,6 +50,7 @@ body{
   margin-bottom: 5px;
   padding: 5px;
   color: $head-color;
+  position: relative;
 }
 
 #header h1{
@@ -84,6 +85,13 @@ body{
 }
 #header a:hover{
   color: $highlight-color;
+}
+
+p#switch-colors{
+  float: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 /* modal */

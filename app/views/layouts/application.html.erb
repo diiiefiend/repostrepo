@@ -11,8 +11,11 @@
     <div id="container">
       <div id="header" class="clearfix">
         <h1><a href="/">Discover<em>it</em></a></h1>
-        <p align="right">
+        <p id="account-links" align="right">
 
+        </p>
+        <p id="switch-colors">
+          <a>Swap Colors! (beta)</a>
         </p>
       </div>
 
@@ -36,25 +39,10 @@
 
     <!-- let's mix up the color palette using colourlovers' api -->
     <script type="text/javascript">
-
-      var processColors = function (data){
-        //data comes back as an array with 1 object
-        var paletteObj = data[0];
-        paletteTitle = paletteObj.title;
-        paletteColors = paletteObj.colors;
-        console.log(paletteTitle);
-        console.log(paletteColors);
-      };
-
-      $.ajax({
-        method: 'GET',
-        url: "http://www.colourlovers.com/api/palettes/random?format=json&jsonCallback=processColors",
-        dataType: 'jsonp',
-        success: function(data) {
-          console.log(data);
-        }
+      $("#switch-colors a").on("click", function(e){
+        e.preventDefault();
+        Discoverit.switchColors();
       });
-
     </script>
   </body>
 </html>
