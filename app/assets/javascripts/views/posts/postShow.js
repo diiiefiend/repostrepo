@@ -51,6 +51,10 @@ Discoverit.Views.PostShow = Backbone.CompositeView.extend({
       this.addSubview("h3", commentForm, false, {render: true});
     };
     this.addCommentsToView();
+
+    // will apply styles to post view and comments bc this is the main post template
+    $(document).trigger("pageLoaded");
+
     return this;
   }
 });

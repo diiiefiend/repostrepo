@@ -16,61 +16,6 @@ window.Discoverit = {
   },
 
   switchColors: function (){
-
-    var processColors = function (data){
-      //data comes back as an array with 1 object
-      var paletteObj = data[0];
-      paletteTitle = paletteObj.title;
-      paletteColors = paletteObj.colors;
-      console.log(paletteTitle);
-      console.log(paletteColors);
-
-      swapColors(paletteColors);
-    };
-
-    var swapColors = function (colors){
-      // colors is an array of 5 values
-
-      // this will sort darkest to lightest
-      colors = colors.sort();
-      console.log(colors);
-
-      var colorsHex = colors.map(function (color){
-        return "#" + color;
-      });
-
-      // darkest color
-      var bgColor = colorsHex[0];
-      $("body").css("background", bgColor);
-      $("#header").css("background", bgColor);
-      $("#footer p").css("color", bgColor);
-
-      // second darkest
-      var footerColor = colorsHex[1];
-      $("#footer").css("border-top-color", footerColor);
-      $("#footer p").css("background", footerColor);
-
-      // middle color
-      var accentColor = colorsHex[2];
-      $("#header h1 a em").css("color", accentColor);
-      $("a").css("color", accentColor);
-
-      // second lightest
-      var contColor = colorsHex[3];
-      $("#cont").css("background", contColor);
-
-      // lightest color
-      var headerColor = colorsHex[4];
-      $("#header").css("border-bottom-color", headerColor);
-      $("#header h1 a").css("color", headerColor);
-      $("#footer p").css("color", headerColor);
-      $("#footer a").css("color", headerColor);
-
-      // currently these don't propagate to further pages (prob need to have these be set every time a page loads--fire off a custom event)
-      $(".vote_container p").css("color", headerColor);
-      $(".votable li").css("background", headerColor);
-    };
-
     $.ajax({
       method: 'GET',
       url: "http://www.colourlovers.com/api/palettes/random?format=json&jsonCallback=processColors",
@@ -84,5 +29,66 @@ window.Discoverit = {
         console.log(error);
       }
     });
+
+    var processColors = function (data){
+      //data comes back as an array with 1 object
+      var paletteObj = data[0];
+      paletteTitle = paletteObj.title;
+
+      // colors is an array of 5 values
+      // this will sort darkest to lightest
+      paletteColors = paletteObj.colors.sort();
+      console.log(paletteTitle);
+      console.log(paletteColors);
+
+      Discoverit.paletteColors = paletteColors;
+
+      Discoverit.swapColors(paletteColors);
+    };
+  },
+
+  swapColors: function (colors){
+    var colorsHex = colors.map(function (color){
+      return "#" + color;
+    });
+
+    // darkest color
+    var bgColor = colorsHex[0];
+    $("body").css("background", bgColor);
+    $("#header").css("background", bgColor);
+    $("#footer p").css("color", bgColor);
+
+    // second darkest
+    var footerColor = colorsHex[1];
+    $("#footer").css("border-top-color", footerColor);
+    $("#footer p").css("background", footerColor);
+
+    // middle color
+    var accentColor = colorsHex[2];
+    $("#header h1 a em").css("color", accentColor);
+    $("a").css("color", accentColor);
+
+    // second lightest
+    var contColor = colorsHex[3];
+    $("#cont").css("background", contColor);
+    $("[class^=commentLoop-]").css("background", contColor);
+
+    // clumsy way of using jquery to imitate hover pseudoclass
+    $("a").hover(function(){
+      $(this).css("color", contColor);
+    }, function(){
+      $(this).css("color", accentColor);
+    });
+
+    // lightest color
+    var headerColor = colorsHex[4];
+    $("#header").css("border-bottom-color", headerColor);
+    $("#header h1 a").css("color", headerColor);
+    $("#footer p").css("color", headerColor);
+    $("#footer a").css("color", headerColor);
+
+    // currently these don't propagate to further pages (prob need to have these be set every time a page loads--fire off a custom event)
+    $(".vote_container p").css("color", headerColor);
+    $(".votable li").css("background", headerColor);
   }
 };

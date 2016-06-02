@@ -20,6 +20,8 @@ Discoverit.Views.UserShow = Backbone.CompositeView.extend({
       this.addSubview(".comments", commentShow, false, {render: true});
     }.bind(this));
 
+    $(document).trigger("pageLoaded");
+
     return this;
   }
 });

@@ -36,12 +36,18 @@
       </div>
     </div>
 
-
-    <!-- let's mix up the color palette using colourlovers' api -->
     <script type="text/javascript">
+      // let's mix up the color palette using colourlovers' api
       $("#switch-colors a").on("click", function(e){
         e.preventDefault();
         Discoverit.switchColors();
+      });
+
+      // currently triggered on frontpage, postShow, subShow, and userShow
+      $(document).on("pageLoaded", function (){
+        if(Discoverit.paletteColors){
+          Discoverit.swapColors(Discoverit.paletteColors);
+        }
       });
     </script>
   </body>

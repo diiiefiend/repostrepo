@@ -41,6 +41,8 @@ Discoverit.Views.SubShow = Backbone.CompositeView.extend({
       this.addSubview(".posts", postView, false, {render: true});
     }.bind(this));
 
+    $(document).trigger("pageLoaded");
+
     return this;
   }
 });

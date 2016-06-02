@@ -16,6 +16,7 @@ Discoverit is an imitation Reddit built on Rails and Backbone. Features:
 - Upvote/downvote on posts/comments
 - If imgur is linked, generates a thumbnail
 - Pagination using Kaminari
+- Color palette swapping with Colourlovers API
 
 
 ### To Do

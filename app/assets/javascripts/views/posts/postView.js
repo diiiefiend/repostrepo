@@ -18,6 +18,7 @@ Discoverit.Views.PostView = Backbone.CompositeView.extend(
       };
       var template = this.template({post: this.model, fp: this.fp, previousVote: this.previousVote});
       this.$el.html(template);
+
       return this;
     }
   })
