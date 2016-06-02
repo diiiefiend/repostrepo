@@ -86,9 +86,33 @@ window.Discoverit = {
     $("#header h1 a").css("color", headerColor);
     $("#footer p").css("color", headerColor);
     $("#footer a").css("color", headerColor);
-
-    // currently these don't propagate to further pages (prob need to have these be set every time a page loads--fire off a custom event)
     $(".vote_container p").css("color", headerColor);
     $(".votable li").css("background", headerColor);
+  },
+
+  resetColors: function (){
+    Discoverit.paletteColors = undefined;
+    
+    $("body").css("background", "");
+    $("#header").css("background", "");
+    $("#footer p").css("color", "");
+
+    $("#footer").css("border-top-color", "");
+    $("#footer p").css("background", "");
+
+    $("#header h1 a em").css("color", "");
+    $("a").css("color", "");
+
+    $("#cont").css("background", "");
+    $("[class^=commentLoop-]").css("background", "");
+
+    $("a").unbind("mouseenter mouseleave");
+
+    $("#header").css("border-bottom-color", "");
+    $("#header h1 a").css("color", "");
+    $("#footer p").css("color", "");
+    $("#footer a").css("color", "");
+    $(".vote_container p").css("color", "");
+    $(".votable li").css("background", "");
   }
 };

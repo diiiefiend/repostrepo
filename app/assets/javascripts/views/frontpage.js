@@ -18,6 +18,8 @@ Discoverit.Views.FrontPage = Backbone.CompositeView.extend({
         page: (this.collection._page || 1) + 1
       }
     });
+
+    window.scrollTo(0,0);
   },
 
   prevPage: function (e){
@@ -27,6 +29,8 @@ Discoverit.Views.FrontPage = Backbone.CompositeView.extend({
         page: Math.max(this.collection._page - 1, 1)
       }
     });
+    
+    window.scrollTo(0,0);
   },
 
   render: function (){

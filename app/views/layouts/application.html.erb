@@ -10,12 +10,13 @@
 
     <div id="container">
       <div id="header" class="clearfix">
-        <h1><a href="/">Discover<em>it</em></a></h1>
+        <h1><a href="#">Discover<em>it</em></a></h1>
         <p id="account-links" align="right">
 
         </p>
-        <p id="switch-colors">
-          <a>Swap Colors! (beta)</a>
+        <p id="color-links">
+          <a id="switch-colors">Swap Colors! (beta)</a>
+          <span id="reset-colors"><a>x</a></span>
         </p>
       </div>
 
@@ -32,15 +33,24 @@
       </div>
 
       <div id="footer">
-        <p>Developed by <a href="http://arielity.net" target="_blank">Ariel Hou</a>. Inspired by <a href="http://reddit.com" target="_blank">Reddit</a>.</p>
+        <p>Developed by <a href="http://arielity.net" target="_blank">Ariel Hou</a>.
+          Inspired by <a href="http://reddit.com" target="_blank">Reddit</a>.
+          Check out the <a href="https://github.com/diiiefiend/discoverit" target="_blank">code</a>.</p>
       </div>
     </div>
 
     <script type="text/javascript">
       // let's mix up the color palette using colourlovers' api
-      $("#switch-colors a").on("click", function(e){
+      $("#switch-colors").on("click", function(e){
         e.preventDefault();
         Discoverit.switchColors();
+        $("#reset-colors").show();
+      });
+
+      $("#reset-colors a").on("click", function(e){
+        e.preventDefault();
+        Discoverit.resetColors();
+        $("#reset-colors").hide();
       });
 
       // currently triggered on frontpage, postShow, subShow, and userShow

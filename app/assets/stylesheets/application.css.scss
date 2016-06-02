@@ -87,11 +87,19 @@ body{
   color: $highlight-color;
 }
 
-p#switch-colors{
+p#color-links{
   float: right;
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+span#reset-colors{
+  display: none;
+  padding-left: 10px;
+  a{
+    font-style: normal;
+  }
 }
 
 /* modal */
