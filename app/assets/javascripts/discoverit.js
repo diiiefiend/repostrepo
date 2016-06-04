@@ -74,7 +74,7 @@ window.Discoverit = {
     $("[class^=commentLoop-]").css("background", contColor);
 
     // clumsy way of using jquery to imitate hover pseudoclass
-    $("a").hover(function(){
+    $("#cont a, #header p a").hover(function(){
       $(this).css("color", contColor);
     }, function(){
       $(this).css("color", accentColor);
@@ -92,7 +92,7 @@ window.Discoverit = {
 
   resetColors: function (){
     Discoverit.paletteColors = undefined;
-    
+
     $("body").css("background", "");
     $("#header").css("background", "");
     $("#footer p").css("color", "");
