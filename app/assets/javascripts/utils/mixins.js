@@ -27,6 +27,8 @@ Discoverit.Mixins.Votable = {
             model.set(model.parse(data));
             delete Discoverit.currentUser.votes[this.modelType + model.id];
             this.render({rerender: true});
+            
+            $(document).trigger("pageLoaded");
           }.bind(this),
           error: function (data){
             options && options.error && options.error(model, data, options);
@@ -44,6 +46,8 @@ Discoverit.Mixins.Votable = {
               model.set(model.parse(data));
               Discoverit.currentUser.votes[this.modelType + model.id] = vote;
               this.render({rerender: true});
+
+              $(document).trigger("pageLoaded");
             }.bind(this),
             error: function (data){
               options && options.error && options.error(model, data, options);

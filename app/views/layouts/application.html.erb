@@ -53,7 +53,8 @@
         $("#reset-colors").hide();
       });
 
-      // currently triggered on frontpage, postShow, subShow, and userShow
+      // currently triggered on frontpage, postShow, subShow, userShow,
+      // and on success callback of Votable.vote
       $(document).on("pageLoaded", function (){
         if(Discoverit.paletteColors){
           Discoverit.swapColors(Discoverit.paletteColors);
