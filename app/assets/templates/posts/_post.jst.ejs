@@ -35,7 +35,7 @@
     <% }; %>
 
   <% if(Discoverit.currentUser.id === post.author().id){ %>
-     - <a href="#posts/<%= post.id %>/edit">edit</a>
+     <span class="post-user-links">- <a href="#posts/<%= post.id %>/edit">edit</a></span>
   <% }; %>
   </p>
   <p class="subtext">by <a href="#users/<%= post.author().id %>"><%= post.author().escape("username") %></a> @ <%= post.escape("created_at") %>
