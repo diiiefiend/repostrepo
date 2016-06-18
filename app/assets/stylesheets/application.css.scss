@@ -14,16 +14,37 @@
  *= require_self
  */
 
-$bg-color: #374552;               //2nd darkest
-$highlight-color: #F9E1C5;        //2nd lightest
-$body-color: #D1D2CC;             //lightest
-$head-color: #8E8E90;             //darkest
+// old discoverit:
+// $bg-color: #374552;               //2nd darkest
+// $highlight-color: #F9E1C5;        //2nd lightest
+// $body-color: #D1D2CC;             //lightest
+// $head-color: #8E8E90;             //darkest
+//
+// $cont-color: #2E2926;
+// $link-color: #404A4C;
+// $field-bg-color: #e9eae4;
+// $upvote-color: orange;
+// $downvote-color: blue;
+
+$bg-color: #fff;
+$highlight-color: #000;
+$body-color: #fff;
+$head-color: #8E8E90;
+$head2-color: #D1D2CC;
 
 $cont-color: #2E2926;
 $link-color: #404A4C;
-$field-bg-color: #e9eae4;
+$votable-bg: #ddd;
+$field-bg-color: #eee;
 $upvote-color: orange;
 $downvote-color: blue;
+
+// prior font-combo:
+// $font-emphasis: 'Georgia', serif;
+// $font-normal: 'Palatino', serif;
+
+$font-emphasis: 'Oswald', sans-serif;
+$font-normal: 'Open Sans', sans-serif;
 
 *{
   margin: 0;
@@ -35,7 +56,7 @@ body{
   background: $bg-color;
   padding: 10px;
   color: $cont-color;
-  font-family: "Open Sans", sans-serif;
+  font-family: $font-normal;
 }
 
 #container{
@@ -59,13 +80,13 @@ body{
   margin-top: 20px;
 }
 #header h1 a{
-  font: 300 48px 'Oswald', sans-serif;
+  font: 300 48px $font-emphasis;
   letter-spacing: .1em;
   color: $highlight-color;
   margin-left: 20px;
 }
 #header h1 a span{
-  color: $body-color;
+  color: $head2-color;
 }
 #header h1 a:hover span{
   color: $head-color;
@@ -164,7 +185,7 @@ span#reset-colors{
   list-style: none;
   margin: 10px 0px 10px 20px;
   padding: 1px 1px 1px 5px;
-  background: #DADBD5;
+  background: $votable-bg;
 }
 
 .vote_container{
@@ -173,7 +194,7 @@ span#reset-colors{
   display: block;
   float: left;
   margin-bottom: -15px;
-  font-family: 'Oswald', sans-serif;
+  font-family: $font-emphasis;
 }
 
 .vote_container form, .vote_container p{
@@ -227,11 +248,11 @@ img.post-thumb{
 .post-title a{
   font-style: normal;
   font-size: 16px;
-  font-family: 'Oswald', sans-serif;
+  font-family: $font-emphasis;
 }
 
 .post-title .post-user-links a{
-    font-family: 'Open Sans', sans-serif;
+    font-family: $font-normal;
     font-size: 14px;
 }
 
@@ -284,13 +305,18 @@ ul.comments li{
 /* footer stuff */
 #footer{
   border-top: 5px solid $highlight-color;
-}
-#footer p{
-  margin: 5px 0 0 0;
-  padding: 10px;
-  font-size: 10px;
-  background: $highlight-color;
-  color: $head-color;
+
+  p{
+    margin: 5px 0 0 0;
+    padding: 10px;
+    font-size: 10px;
+    background: $highlight-color;
+    color: $head-color;
+  }
+
+  a{
+    color: $head-color;
+  }
 }
 
 /* general use selectors */
@@ -388,12 +414,13 @@ legend{
 input, textarea{
   background: $field-bg-color;
   border: 0;
-  padding: 2px;
+  padding: 5px;
   border-bottom: 2px solid #fff;
   margin: 0 0 10px 0;
   display: block;
   width: 75%;
   min-width: 200px;
+  font: 14px $font-normal;
 }
 
 textarea{

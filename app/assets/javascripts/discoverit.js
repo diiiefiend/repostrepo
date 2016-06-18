@@ -43,11 +43,13 @@ window.Discoverit = {
 
       Discoverit.paletteColors = paletteColors;
 
-      Discoverit.swapColors(paletteColors);
+      Discoverit.swapColors(paletteColors, paletteTitle);
     };
   },
 
-  swapColors: function (colors){
+  swapColors: function (colors, title){
+    $("#palette-title").html(title);
+
     var colorsHex = colors.map(function (color){
       return "#" + color;
     });
@@ -92,6 +94,7 @@ window.Discoverit = {
 
   resetColors: function (){
     Discoverit.paletteColors = undefined;
+    $("#palette-title").html("");
 
     $("body").css("background", "");
     $("#header").css("background", "");
