@@ -16,7 +16,7 @@
 
 // old discoverit:
 // $bg-color: #374552;               //2nd darkest
-// $highlight-color: #F9E1C5;        //2nd lightest
+// $accent-color: #F9E1C5;        //2nd lightest
 // $body-color: #D1D2CC;             //lightest
 // $head-color: #8E8E90;             //darkest
 //
@@ -27,7 +27,8 @@
 // $downvote-color: blue;
 
 $bg-color: #fff;
-$highlight-color: #000;
+$accent-color: #000;
+$accent-color-lighter: lighten(#000, 60%);
 $body-color: #fff;
 $head-color: #8E8E90;
 $head2-color: #D1D2CC;
@@ -67,7 +68,7 @@ body{
 /* header stuff */
 #header{
   background: $bg-color;
-  border-bottom: 5px solid $highlight-color;
+  border-bottom: 5px solid $accent-color;
   margin-bottom: 5px;
   padding: 5px;
   color: $head-color;
@@ -82,7 +83,7 @@ body{
 #header h1 a{
   font: 300 48px $font-emphasis;
   letter-spacing: .1em;
-  color: $highlight-color;
+  color: $accent-color;
   margin-left: 20px;
 }
 #header h1 a span{
@@ -105,7 +106,7 @@ body{
   color: $head-color;
 }
 #header a:hover{
-  color: $highlight-color;
+  color: $accent-color;
 }
 
 p#color-links{
@@ -171,7 +172,6 @@ span#reset-colors{
 }
 
 /* sidebar stuff */
-
 .right_bar{
   float: right;
   width: 25%;
@@ -230,7 +230,7 @@ span#reset-colors{
 .votable .reply_link,
 .votable p.subtext{
   display: block;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 img.post-thumb{
@@ -275,7 +275,7 @@ ul.comments li > ul.comments{
 }
 
 ul.comments li{
-  border-left: 2px dotted $highlight-color;
+  border-left: 2px solid $accent-color-lighter;
   padding-left: 10px;
 }
 
@@ -298,19 +298,19 @@ ul.comments li{
   right: 0;
   width: 40%;
   height: auto;
-  border: 5px solid #fff;
+  border: 5px solid #eee;
   transform: rotate(5deg);
 }
 
 /* footer stuff */
 #footer{
-  border-top: 5px solid $highlight-color;
+  border-top: 5px solid $accent-color;
 
   p{
     margin: 5px 0 0 0;
     padding: 10px;
     font-size: 10px;
-    background: $highlight-color;
+    background: $accent-color;
     color: $head-color;
   }
 
@@ -388,6 +388,8 @@ hr{
   margin: 5px 0;
 }
 
+// form stuff
+
 label{
   float: left;
   display: block;
@@ -427,6 +429,13 @@ textarea{
   height: 100px;
 }
 
+textarea.comment-box{
+  margin-left: 30px;
+  width: calc(100% - 90px);
+  padding-left: 20px;
+  padding-right: 40px;
+}
+
 .subs-checkboxes{
   width: calc(75% - 20px);
   background: $field-bg-color;
@@ -453,4 +462,26 @@ input[type="checkbox"], input[type="submit"], input[type="reset"]{
 
 input:disabled{
   opacity: 0.5;
+}
+
+// adjusting for small screens:
+@media (max-width: 670px){
+  #header h1 a:hover:after{
+    content: "";
+  }
+
+  p#color-links{
+    margin-top: -5px;
+    position: relative;
+    clear: right;
+  }
+
+  .right_bar{
+    float:none;
+    width: calc(100% - 20px); // bc it has 10px of padding on each side
+
+    ul{
+      display: none; // hide the list of subs for now--takes up too much space
+    }
+  }
 }
