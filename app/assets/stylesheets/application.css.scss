@@ -465,7 +465,11 @@ input:disabled{
 }
 
 // adjusting for small screens:
-@media (max-width: 670px){
+@media screen and (max-width: 670px) {
+  #container{
+    width: 100%;
+  }
+
   #header h1 a:hover:after{
     content: "";
   }
