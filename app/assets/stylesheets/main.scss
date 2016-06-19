@@ -1,0 +1,462 @@
+*{
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+
+body{
+  background: $bg-color;
+  padding: 10px;
+  color: $cont-color;
+  font-family: $font-normal;
+}
+
+#container{
+  margin: 0 auto;
+  width: 80%;
+}
+
+/* header stuff */
+#header{
+  background: $bg-color;
+  border-bottom: 5px solid $accent-color;
+  margin-bottom: 5px;
+  padding: 5px;
+  color: $head-color;
+  position: relative;
+
+  h1{
+    float: left;
+    margin-right: -20%;
+    margin-top: 20px;
+
+    a{
+      font: 300 48px $font-emphasis;
+      letter-spacing: .1em;
+      color: $accent-color;
+      margin-left: 20px;
+
+      .norm-heading > span, .alt-heading > sup{
+        color: $head2-color;
+      }
+
+      &:hover .norm-heading > span, &:hover .alt-heading > sup{
+        color: $head-color;
+      }
+
+      .alt-heading{
+        display: none;
+      }
+
+      &:hover:after{
+        content: "formerly known as Discoverit";
+        font-size: 12px;
+        letter-spacing: normal;
+      }
+    }
+  }
+
+  p{
+    float: right;
+    font-size: 12px;
+  }
+
+  a{
+    color: $head-color;
+  }
+  a:hover{
+    color: $accent-color;
+  }
+}
+
+p#color-links{
+  float: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  a{
+    cursor: pointer;
+  }
+}
+
+span#reset-colors{
+  display: none;
+  padding-left: 10px;
+  a{
+    font-style: normal;
+  }
+}
+
+/* modal */
+.hidden{
+  display: none;
+}
+
+.modal{
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  opacity:1;
+  pointer-events: auto;
+
+  > div {
+    width: 400px;
+    position: relative;
+    margin: 10% auto;
+    padding: 10px;
+    text-align: left;
+    background: #fff;
+  }
+
+  .close {
+    color: #606061;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-weight: bold;
+  }
+}
+
+
+/* cont stuff */
+#cont{
+  background: $body-color;
+  padding: 10px;
+  font-size: 14px;
+  margin-bottom: 5px;
+  position: relative;
+  min-height: 200px;
+}
+
+/* sidebar stuff */
+.right_bar{
+  float: right;
+  width: 25%;
+  padding: 10px;
+  background: #fff;
+}
+
+.vote_container{
+  width: 25px;
+  margin-left: -40px;
+  display: block;
+  float: left;
+  margin-bottom: -15px;
+  font-family: $font-emphasis;
+
+  form, p {
+    float: right;
+    margin: 0;        // overwritten for <p> in the votable css
+    clear: right;
+    padding: 1px 5px;
+  }
+
+  form:first-child{
+    margin: 5px 0 -5px 0;
+  }
+
+  form:last-child{
+    margin: -5px 0 0 0;
+  }
+
+  p{
+    font-size: 12px;
+    color: #8B8C87;
+  }
+
+  button{
+    float: left;
+    background: transparent;
+    border: 0;
+    font-size: 10px;
+
+    &:hover{
+      background: #fff;
+    }
+  }
+}
+
+/* post items stuff */
+.votable{
+  li{
+    list-style: none;
+    margin: 10px 0px 10px 20px;
+    padding: 1px 1px 1px 5px;
+    background: $votable-bg;
+  }
+
+  p{
+    margin: 5px 0;
+  }
+
+  .reply_link, p.subtext{
+    display: block;
+    font-size: 10px;
+  }
+
+  .post-title{
+    margin-bottom: 10px;
+    font-size: 12px;
+
+    a{
+      font-style: normal;
+      font-size: 16px;
+      font-family: $font-emphasis;
+    }
+
+    .post-user-links a{
+        font-family: $font-normal;
+        font-size: 14px;
+    }
+  }
+
+  img.post-thumb{
+    float: left;
+    width: 50px;
+    height: auto;
+    margin: 0px 10px 5px 0;
+  }
+}
+
+#post-body{
+  margin-left: 40px;
+  line-height: 150%;
+  font-size: .9em;
+}
+
+ul.comments{
+  margin-left: 10px;
+
+  li > ul.comments{
+    margin-right: 10px;
+  }
+
+  li{
+    border-left: 2px solid $accent-color-lighter;
+    padding-left: 10px;
+  }
+}
+
+[class*="commentLoop-"]{
+  background: $body-color;
+}
+
+.page-nav .next-page{
+  float: left;
+}
+.page-nav .prev-page{
+  float: right;
+}
+
+/* profile stuff */
+
+.prof-pic{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: auto;
+  border: 5px solid #eee;
+  transform: rotate(5deg);
+}
+
+/* footer stuff */
+#footer{
+  border-top: 5px solid $accent-color;
+
+  p{
+    margin: 5px 0 0 0;
+    padding: 10px;
+    font-size: 10px;
+    background: $accent-color;
+    color: $head-color;
+  }
+
+  a{
+    color: $head-color;
+  }
+}
+
+/* general use selectors */
+
+.no-em li a:first-child{
+  font-style: normal;
+}
+
+ul.strong li a:first-child{
+  font-weight: bold;
+}
+
+.clearfix:after{
+  clear: both;
+  display: block;
+  content: "";
+}
+.clearfix-left:after{
+  clear: left;
+  display: block;
+  content: "";
+}
+
+.bolded{
+  font-weight: bold;
+}
+
+.orange{
+  color: $upvote-color;
+}
+
+.blue{
+  color: $downvote-color;
+}
+
+/* general tags */
+a{
+  text-decoration: none;
+  color: $link-color;
+  font-style: italic;
+}
+a:hover{
+  color: #fff;
+}
+
+h2, h3, h4{
+  margin: 5px 0 10px 0;
+}
+
+h5{
+  margin: 5px 0;
+}
+
+ul, p, form{
+  margin: 10px 0;
+}
+
+ul{
+  margin-left: 15px;
+}
+
+li{
+  margin: 5px;
+  list-style: none;
+}
+
+hr{
+  clear: both;
+  margin: 5px 0;
+}
+
+/* form stuff */
+
+label{
+  float: left;
+  display: block;
+  text-align: right;
+  width: 15%;
+  margin-right: 10px;
+  clear: left;
+}
+
+fieldset{
+  clear: left;
+  margin: 10px 0;
+  padding: 10px 0;
+  border: 1px solid #eee;
+}
+
+legend{
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: lowercase;
+  font-variant: small-caps;
+}
+
+input, textarea{
+  background: $field-bg-color;
+  border: 0;
+  padding: 5px;
+  border-bottom: 2px solid #fff;
+  margin: 0 0 10px 0;
+  display: block;
+  width: 75%;
+  min-width: 200px;
+  font: 14px $font-normal;
+}
+
+textarea{
+  height: 100px;
+
+  &.comment-box{
+    margin-left: 30px;
+    width: calc(100% - 90px);
+    padding-left: 20px;
+    padding-right: 40px;
+  }
+}
+
+.subs-checkboxes{
+  width: calc(75% - 20px);
+  background: $field-bg-color;
+  padding: 10px;
+  margin-left: calc(15% + 10px);
+
+  label{
+    clear: none;
+    display: inline-block;
+    float: none;
+    width: auto;
+  }
+}
+
+.submit-area{
+  margin: 10px 0 0 16%;
+}
+
+input{
+  &[type="checkbox"], &[type="submit"], &[type="reset"]{
+    display: inline;
+    width: auto;
+    min-width: auto;
+  }
+
+  &:disabled{
+    opacity: 0.5;
+  }
+}
+
+/* adjusting for small screens: */
+
+@media screen and (max-width: 670px) {
+  #container{
+    width: 100%;
+  }
+
+  #header h1 a{
+    margin-left: 0;
+
+    .norm-heading{
+      display: none;
+    }
+
+    .alt-heading{
+      display: inline;
+    }
+
+    &:hover:after{
+      content: "Repost Repository";
+    }
+  }
+
+  .right_bar{
+    float:none;
+    width: calc(100% - 20px); // bc it has 10px of padding on each side
+
+    ul{
+      display: none; // hide the list of subs for now--takes up too much space
+    }
+  }
+}

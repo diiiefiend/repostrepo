@@ -1,5 +1,7 @@
 <form data-parentcomment = "<%= parentCommentId %>">
-  <textarea class="comment-box" name="comment[content]"><%= comment.escape("content") %></textarea>
+  <textarea <%= (!parentCommentId) ? 'class="comment-box"' : '' %> name="comment[content]">
+    <%= comment.escape("content") %>
+  </textarea>
   <input type="submit" value="Submit">
   <% if(!creating || parentCommentId){ %>
     <input type="reset" value="Cancel" class="cancel-reply">

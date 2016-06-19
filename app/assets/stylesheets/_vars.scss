@@ -1,0 +1,32 @@
+// old discoverit:
+// $bg-color: #374552;               //2nd darkest
+// $accent-color: #F9E1C5;        //2nd lightest
+// $body-color: #D1D2CC;             //lightest
+// $head-color: #8E8E90;             //darkest
+//
+// $cont-color: #2E2926;
+// $link-color: #404A4C;
+// $field-bg-color: #e9eae4;
+// $upvote-color: orange;
+// $downvote-color: blue;
+
+$bg-color: #fff;
+$accent-color: #000;
+$accent-color-lighter: lighten(#000, 60%);
+$body-color: #fff;
+$head-color: #8E8E90;
+$head2-color: #D1D2CC;
+
+$cont-color: #2E2926;
+$link-color: #404A4C;
+$votable-bg: #ddd;
+$field-bg-color: #eee;
+$upvote-color: orange;
+$downvote-color: blue;
+
+// prior font-combo:
+// $font-emphasis: 'Georgia', serif;
+// $font-normal: 'Palatino', serif;
+
+$font-emphasis: 'Oswald', sans-serif;
+$font-normal: 'Open Sans', sans-serif;
