@@ -1,5 +1,5 @@
-#Discoverit
-Ariel Hou, Aug-currently work in progress
+#Repost Repository
+Ariel Hou, Aug 2015 - ongoing
 
 #Live Site
 [http://repost.arielity.net][link]

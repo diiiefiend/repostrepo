@@ -38,8 +38,8 @@ window.Discoverit = {
       // colors is an array of 5 values
       // this will sort darkest to lightest
       paletteColors = paletteObj.colors.sort();
-      console.log(paletteTitle);
-      console.log(paletteColors);
+      // console.log(paletteTitle);
+      // console.log(paletteColors);
 
       Discoverit.paletteColors = paletteColors;
 
