@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151012195409) do
+ActiveRecord::Schema.define(version: 20221031215045) do
 
   create_table "comments", force: :cascade do |t|
     t.string   "content",           limit: 255,                 null: false
@@ -23,12 +23,19 @@ ActiveRecord::Schema.define(version: 20151012195409) do
     t.boolean  "deleted",                       default: false
   end
 
+  add_index "comments", ["parent_comment_id"], name: "index_comments_on_parent_comment_id", using: :btree
+  add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
   create_table "post_subs", force: :cascade do |t|
     t.integer  "post_id",    limit: 4, null: false
     t.integer  "sub_id",     limit: 4, null: false
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
+
+  add_index "post_subs", ["post_id"], name: "index_post_subs_on_post_id", using: :btree
+  add_index "post_subs", ["sub_id"], name: "index_post_subs_on_sub_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.string   "title",               limit: 255,   null: false
@@ -40,6 +47,8 @@ ActiveRecord::Schema.define(version: 20151012195409) do
     t.datetime "last_activity_stamp"
   end
 
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
   create_table "subs", force: :cascade do |t|
     t.string   "title",               limit: 255, null: false
     t.string   "description",         limit: 255, null: false
@@ -48,6 +57,8 @@ ActiveRecord::Schema.define(version: 20151012195409) do
     t.datetime "updated_at",                      null: false
     t.datetime "last_activity_stamp"
   end
+
+  add_index "subs", ["user_id"], name: "index_subs_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",           limit: 255, null: false
@@ -68,5 +79,7 @@ ActiveRecord::Schema.define(version: 20151012195409) do
     t.datetime "updated_at",                           null: false
     t.integer  "user_id",      limit: 4,               null: false
   end
+
+  add_index "votes", ["votable_type", "votable_id"], name: "index_votes_on_votable_type_and_votable_id", using: :btree
 
 end
